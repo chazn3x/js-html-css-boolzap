@@ -91,6 +91,7 @@ const app = new Vue({
             },
         ],
         searchIcon: false,
+        viewChat: false
     },
     methods: {
         getMsgLength: function() {
@@ -109,6 +110,9 @@ const app = new Vue({
                     console.log(message.newData);
                 });
             });
+        },
+        openChat: function(i) {
+            this.viewChat = true;
         },
     },
     created() {

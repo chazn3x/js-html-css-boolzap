@@ -65,7 +65,7 @@
                 <!-- chat list -->
                 <div class="chat-list w-100">
                     <!-- single chat preview -->
-                    <div class="chat-preview w-100 flex-center-y" v-for="(item, i) in contacts">
+                    <div class="chat-preview w-100 flex-center-y" v-for="(item, i) in contacts" @click="openChat(i)">
                         <!-- avatar -->
                         <div class="avatar circle-big mx-1">
                             <img :src="('img/avatar' + item.avatar + '.jpg')" :alt="(item.name + '\'s avatar')">
@@ -94,7 +94,25 @@
                 </div>
             </div>
             <!-- right col -->
-            <div class="chat-col"></div>
+            <div class="chat-col">
+                <!-- landing page -->
+                <div class="landing-page wh-100 pt-3 relative" v-if="viewChat == false">
+                    <div class="landing-content mx-auto text-center w-90 h-100 flex-column">
+                        <div class="landing-image">
+                            <img src="img/intro-connection-hq-dark_f8cb12a6fc73afaf9d5903b7849bebd6.jpg" alt="keep phone connected">
+                        </div>
+                        <h2 class="my-2">Keep your phone connected</h2>
+                        <p class="pb-2">WhatsApp connects to your phone to sync messages. To reduce data usage, connect your phone to Wi-Fi.</p>
+                        <div class="bottom-p pt-2 flex">
+                            <div class="icon flex-center-y me-05">
+                                <svg viewBox="0 0 21 18" width="21" height="18"><path d="M10.426 14.235a.767.767 0 0 1-.765-.765c0-.421.344-.765.765-.765s.765.344.765.765-.344.765-.765.765zM4.309 3.529h12.235v8.412H4.309V3.529zm12.235 9.942c.841 0 1.522-.688 1.522-1.529l.008-8.412c0-.842-.689-1.53-1.53-1.53H4.309c-.841 0-1.53.688-1.53 1.529v8.412c0 .841.688 1.529 1.529 1.529H1.25c0 .842.688 1.53 1.529 1.53h15.294c.841 0 1.529-.688 1.529-1.529h-3.058z"></path></svg>
+                            </div>
+                            <p>Make calls from desktop with WhatsApp for Mac. <a href="#" @click.prevent>Get it here</a>.</p>
+                        </div>
+                    </div>
+                    <div class="bottom-bar w-100 absolute bottom-0"></div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- development version, includes helpful console warnings -->
