@@ -51,6 +51,8 @@ svg path:first-child {
 .circle {
     width: 40px;
     height: 40px;
+    min-width: 40px;
+    min-height: 40px;
     border-radius: 50%;
 }
 .circle-big {
@@ -272,4 +274,21 @@ svg path:first-child {
 .chat-footer {
     height: 60px;
     background: rgb(30,36,40);
+}
+.chat-footer .message-area {
+    height: 40px;
+    border-radius: 20px;
+    background: rgb(50,55,57);
+}
+.chat-footer input {
+    outline: none;
+    background: none;
+    border: none;
+    font-size: .9rem;
+    font-weight: 100;
+    color: rgba(255,255,255,.9);
+    margin-left: 1.5rem;
+}
+.chat-footer input::placeholder {
+    color: rgb(130, 134, 137);
 }

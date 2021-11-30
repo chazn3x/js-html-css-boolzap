@@ -90,12 +90,13 @@ const app = new Vue({
                 muted: true
             },
         ],
-        searchIcon: false,
-        viewChat: false,
+        viewChat: true,
         selectedChat: 0,
         searchInput: "",
+        searching: false,
         hideNotifyAlert: false,
-        allHidden: false
+        allHidden: false,
+        messageInput: "",
     },
     methods: {
         getMsgLength: function() {
@@ -134,6 +135,9 @@ const app = new Vue({
             if (array.length == this.contacts.length) {
                 this.allHidden = true;
             } else this.allHidden = false;
+            if (this.searchInput == "") {
+                this.searching = false;
+            } else this.searching = true;
         }
     },
     created() {

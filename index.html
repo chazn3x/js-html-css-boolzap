@@ -52,10 +52,10 @@
                 <div class="search-bar w-100 flex-center px-1">
                     <div class="search-area flex-center-y w-100">
                         <!-- icons -->
-                        <div class="icon search-icon ms-1" v-if="searchIcon == false">
+                        <div class="icon search-icon ms-1" v-if="searching == false">
                             <svg viewBox="0 0 24 24" width="24" height="24" class=""><path d="M15.009 13.805h-.636l-.22-.219a5.184 5.184 0 0 0 1.256-3.386 5.207 5.207 0 1 0-5.207 5.208 5.183 5.183 0 0 0 3.385-1.255l.221.22v.635l4.004 3.999 1.194-1.195-3.997-4.007zm-4.808 0a3.605 3.605 0 1 1 0-7.21 3.605 3.605 0 0 1 0 7.21z"></path></svg>
                         </div>
-                        <div class="icon back-icon ms-1" v-else>
+                        <div class="icon back-icon ms-1" v-else @click="searchInput = ''">
                             <i class="fas fa-arrow-left"></i>
                         </div>
                         <!-- input -->
@@ -156,7 +156,15 @@
                             </div>
                         </div>
                         <!-- input message -->
-
+                        <div class="message-area w-100 flex-center-y">
+                            <input class="w-100 h-70" type="text" autocomplete="false" spellcheck="false" placeholder="Type a message" v-model="messageInput">
+                        </div>
+                        <div class="mic icon circle flex-center mx-1" v-if="messageInput == ''">
+                            <svg viewBox="0 0 24 24" width="24" height="24" class=""><path d="M11.999 14.942c2.001 0 3.531-1.53 3.531-3.531V4.35c0-2.001-1.53-3.531-3.531-3.531S8.469 2.35 8.469 4.35v7.061c0 2.001 1.53 3.531 3.53 3.531zm6.238-3.53c0 3.531-2.942 6.002-6.237 6.002s-6.237-2.471-6.237-6.002H3.761c0 4.001 3.178 7.297 7.061 7.885v3.884h2.354v-3.884c3.884-.588 7.061-3.884 7.061-7.885h-2z"></path></svg>
+                        </div>
+                        <div class="send icon circle flex-center mx-1" v-else>
+                            <svg viewBox="0 0 24 24" width="24" height="24" class=""><path d="M1.101 21.757L23.8 12.028 1.101 2.3l.011 7.912 13.623 1.816-13.623 1.817-.011 7.912z"></path></svg>
+                        </div>
                     </div>
                 </div>
             </div>
