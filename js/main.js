@@ -22,6 +22,8 @@ const app = new Vue({
                     status: 'received'
                 }
                 ],
+                msgLength: 0,
+                muted: false
             },
             {
                 name: 'Fabio',
@@ -43,6 +45,8 @@ const app = new Vue({
                     status: 'received'
                 }
                 ],
+                msgLength: 0,
+                muted: false
             },
             {
                 name: 'Samuele',
@@ -64,6 +68,8 @@ const app = new Vue({
                     status: 'received'
                 }
                 ],
+                msgLength: 0,
+                muted: false
             },
             {
                 name: 'Luisa',
@@ -80,11 +86,33 @@ const app = new Vue({
                     status: 'received'
                 }
                 ],
+                msgLength: 0,
+                muted: true
             },
         ],
         searchIcon: false,
     },
     methods: {
-
+        getMsgLength: function() {
+            this.contacts.forEach(contact => {
+                contact.msgLength = contact.messages.length - 1;
+            });
+        },
+        newDates: function() {
+            this.contacts.forEach(contact => {
+                contact.messages.forEach(message => {
+                    for (let i = 0; i < message.date.length; i++) {
+                    //     if (message.date[i] == " ") {
+                            message.newData = message.date.split(" ");
+                    //     }
+                    }
+                    console.log(message.newData);
+                });
+            });
+        },
+    },
+    created() {
+        this.getMsgLength();
+        this.newDates();
     }
 });

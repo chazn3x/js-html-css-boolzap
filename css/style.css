@@ -51,6 +51,11 @@ svg path:first-child {
     height: 40px;
     border-radius: 50%;
 }
+.circle-big {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
 /* left col */
 .main-col {
     flex: 3;
@@ -94,7 +99,6 @@ svg path:first-child {
     border-bottom: 1px solid #fff2;
 }
 .search-bar .search-area {
-    width: 90%;
     height: 36px;
     border-radius: 18px;
     background: rgb(50,55,57);
@@ -115,9 +119,65 @@ svg path:first-child {
     font-size: .9rem;
     font-weight: 100;
     color: rgba(255,255,255,.9);
+    margin-left: 1.5rem;
 }
 .search-bar .search-area input::placeholder {
     color: rgb(130, 134, 137);
+}
+/* chat list */
+.chat-list {
+    flex: 1;
+    overflow-y: scroll;
+}
+.chat-preview {
+    height: 70px;
+    cursor: pointer;
+    /* background: #000; */
+}
+.chat-preview .chat-info {
+    flex: 1;
+    border-bottom: 1px solid #fff2;
+}
+.chat-preview .chat-info .chat-info-top,
+.chat-preview .chat-info .chat-info-bottom {
+    margin: .2em 0;
+}
+.chat-preview .chat-info .chat-info-top h4 {
+    font-size: 1rem;
+    font-weight: 100;
+}
+.chat-preview .chat-info .chat-info-bottom h5 {
+    font-size: .8rem;
+    font-weight: 100;
+    color: rgba(255,255,255,.6);
+}
+.chat-preview:hover {
+    background: rgb(45,49,52);
+}
+.chat-info .last-msg-time {
+    color: rgba(255,255,255,.6);
+    font-weight: 100;
+    font-size: .8rem;
+}
+.chat-info .icons {
+    width: 50px;
+    height: 20px;
+    overflow: hidden;
+}
+.chat-info .menu-icon {
+    color: rgb(130, 134, 137);
+    right: -25px;
+    transition: right .1s;
+}
+.chat-info .mute-icon {
+    right: 0;
+    transition: right .1s;
+}
+.chat-preview:hover .menu-icon {
+    right: 0px;
+}
+.chat-preview:hover .mute-icon {
+    right: 20px;
 }
 /* right col */
 .chat-col {

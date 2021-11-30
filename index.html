@@ -49,8 +49,8 @@
                     </div>
                 </div>
                 <!-- searchbar -->
-                <div class="search-bar w-100 flex-center">
-                    <div class="search-area flex-center-y">
+                <div class="search-bar w-100 flex-center px-1">
+                    <div class="search-area flex-center-y w-100">
                         <!-- icons -->
                         <div class="icon search-icon ms-1" v-if="searchIcon == false">
                             <svg viewBox="0 0 24 24" width="24" height="24" class=""><path d="M15.009 13.805h-.636l-.22-.219a5.184 5.184 0 0 0 1.256-3.386 5.207 5.207 0 1 0-5.207 5.208 5.183 5.183 0 0 0 3.385-1.255l.221.22v.635l4.004 3.999 1.194-1.195-3.997-4.007zm-4.808 0a3.605 3.605 0 1 1 0-7.21 3.605 3.605 0 0 1 0 7.21z"></path></svg>
@@ -59,7 +59,37 @@
                             <i class="fas fa-arrow-left"></i>
                         </div>
                         <!-- input -->
-                        <input class="w-100 ms-1 me-3 h-70" type="text" autocomplete="false" spellcheck="false" placeholder="Search or start new chat">
+                        <input class="w-100 me-3 h-70" type="text" autocomplete="false" spellcheck="false" placeholder="Search or start new chat">
+                    </div>
+                </div>
+                <!-- chat list -->
+                <div class="chat-list w-100">
+                    <!-- single chat preview -->
+                    <div class="chat-preview w-100 flex-center-y" v-for="(item, i) in contacts">
+                        <!-- avatar -->
+                        <div class="avatar circle-big mx-1">
+                            <img :src="('img/avatar' + item.avatar + '.jpg')" :alt="(item.name + '\'s avatar')">
+                        </div>
+                        <!-- chat info -->
+                        <div class="chat-info flex-column justify-center pe-1 h-100">
+                            <div class="chat-info-top flex justify-between">
+                                <h4>{{item.name}}</h4>
+                                <div class="last-msg-time">
+                                    <span>{{item.messages[item.msgLength].newData[0]}}</span>
+                                </div>
+                            </div>
+                            <div class="chat-info-bottom flex justify-between">
+                                <h5>{{item.messages[item.msgLength].message}}</h5>
+                                <div class="icons relative">
+                                    <div class="mute-icon absolute" v-if="item.muted">
+                                        <svg viewBox="0 0 16 18" width="16" height="18" class=""><path d="M11.52 9.206c0-1.4-.778-2.567-1.944-3.111v1.711L11.52 9.75v-.544zm1.945 0c0 .7-.156 1.4-.389 2.022l1.167 1.167c.544-.933.778-2.1.778-3.267 0-3.344-2.333-6.144-5.444-6.844v1.633c2.255.778 3.888 2.8 3.888 5.289zm-11.433-7L1.02 3.217l3.656 3.656H1.02v4.667h3.111l3.889 3.889v-5.211l3.344 3.344c-.544.389-1.089.7-1.789.933v1.633a6.64 6.64 0 0 0 2.878-1.4l1.556 1.556 1.011-1.011-7-7-5.988-6.067zm5.988.778L6.387 4.617 8.02 6.25V2.984z"></path></svg>
+                                    </div>
+                                    <div class="menu-icon absolute">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
