@@ -68,6 +68,9 @@ svg path:first-child {
     background: rgb(20,83,115);
     cursor: pointer;
 }
+.notify-alert.active {
+    display: none;
+}
 .notify-alert .icon {
     width: 48px;
     height: 48px;
@@ -125,6 +128,12 @@ svg path:first-child {
     color: rgb(130, 134, 137);
 }
 /* chat list */
+.no-results {
+    margin-top: 5rem;
+    color: rgba(255,255,255,.6);
+    font-weight: 100;
+    font-size: .9rem;
+}
 .chat-list {
     flex: 1;
     overflow-y: scroll;
@@ -132,6 +141,12 @@ svg path:first-child {
 .chat-preview {
     height: 70px;
     cursor: pointer;
+}
+.chat-preview.hide {
+    display: none;
+}
+.chat-preview .avatar {
+    min-width: 48px;
 }
 .chat-preview .chat-info {
     flex: 1;
@@ -149,6 +164,11 @@ svg path:first-child {
     font-size: .8rem;
     font-weight: 100;
     color: rgba(255,255,255,.6);
+    white-space: nowrap; 
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    
 }
 .chat-preview:hover {
     background: rgb(45,49,52);
@@ -182,12 +202,14 @@ svg path:first-child {
 .chat-col {
     flex: 7;
 }
+/* landing page */
 .landing-page {
     background: rgb(34,47,54);
 }
 .landing-content {
     align-items: center;
     max-width: 550px;
+    overflow-y: auto;
 }
 .landing-page .landing-image {
     width: 350px;
@@ -213,4 +235,36 @@ svg path:first-child {
 .landing-page .bottom-bar {
     min-height: 5px;
     background: rgb(17,97,98);
+}
+/* chat page */
+/* chat header */
+.chat-header .user-info h4 {
+    font-size: 1rem;
+    font-weight: 100;
+    margin: .2em 0;
+}
+.chat-header .user-info h5 {
+    font-size: .8rem;
+    font-weight: 100;
+    color: rgba(255,255,255,.6);
+    margin: .2em 0;
+}
+.chat-header .user-info {
+    flex: 1;
+    cursor: pointer;
+}
+/* chat messages */
+.chat-body {
+    background: rgb(13,20,24);
+    flex: 1;
+}
+.chat-body .chat-background {
+    background-image: url(../img/bg-chat-tile-dark_a4be512e7195b6b733d9110b408f075d.png);
+    background-repeat: repeat;
+    background-size: 400px;
+    opacity: .07;
+}
+/* chat input */
+.chat-footer {
+    height: 60px;
 }

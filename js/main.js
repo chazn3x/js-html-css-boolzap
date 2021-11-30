@@ -91,7 +91,11 @@ const app = new Vue({
             },
         ],
         searchIcon: false,
-        viewChat: false
+        viewChat: false,
+        selectedChat: 0,
+        searchInput: "",
+        hideNotifyAlert: false,
+        allHidden: false
     },
     methods: {
         getMsgLength: function() {
@@ -103,20 +107,40 @@ const app = new Vue({
             this.contacts.forEach(contact => {
                 contact.messages.forEach(message => {
                     for (let i = 0; i < message.date.length; i++) {
-                    //     if (message.date[i] == " ") {
-                            message.newData = message.date.split(" ");
-                    //     }
+                        message.newData = message.date.split(" ");
                     }
-                    console.log(message.newData);
                 });
             });
         },
         openChat: function(i) {
             this.viewChat = true;
+            this.selectedChat = i;
         },
+        getSearchedContacts: function() {
+            this.contacts.forEach(contact => {
+                const name = contact.name.toLowerCase();
+                const search = this.searchInput.toLowerCase();
+                if (name.includes(search)) {
+                    contact.visible = true;
+                } else {
+                    contact.visible = false;
+                }
+            });
+            const array = this.contacts.filter(contact => {
+                if (contact.visible == false) {
+                    return contact;
+                }
+            });
+            if (array.length == this.contacts.length) {
+                this.allHidden = true;
+            } else this.allHidden = false;
+        }
     },
     created() {
         this.getMsgLength();
         this.newDates();
+    },
+    updated() {
+        this.getSearchedContacts();
     }
 });

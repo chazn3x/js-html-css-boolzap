@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <!-- notifications alert -->
-                <div class="notify-alert w-100 flex-center-y ps-1">
+                <div class="notify-alert w-100 flex-center-y ps-1" @click="hideNotifyAlert = true" :class="{'active' : hideNotifyAlert}">
                     <div class="icon">
                         <svg viewBox="0 0 48 48" width="48" height="48"><path d="M24.154 2C11.919 2 2 11.924 2 24.165S11.919 46.33 24.154 46.33s22.154-9.924 22.154-22.165S36.389 2 24.154 2zm-.744 15.428v-.618c0-.706.618-1.324 1.324-1.324s1.323.618 1.323 1.324v.618c2.559.618 4.412 2.823 4.412 5.559v3.176l-8.294-8.294a5.056 5.056 0 0 1 1.235-.441zm1.323 15.706a1.77 1.77 0 0 1-1.765-1.765h3.529a1.768 1.768 0 0 1-1.764 1.765zm7.236-.883l-1.765-1.765H17.233v-.882l1.765-1.765v-4.853a5.56 5.56 0 0 1 .794-2.912l-2.559-2.559 1.147-1.147 14.735 14.736-1.146 1.147z"></path></svg>
                     </div>
@@ -59,13 +59,17 @@
                             <i class="fas fa-arrow-left"></i>
                         </div>
                         <!-- input -->
-                        <input class="w-100 me-3 h-70" type="text" autocomplete="false" spellcheck="false" placeholder="Search or start new chat">
+                        <input class="w-100 me-3 h-70" type="text" autocomplete="false" spellcheck="false" placeholder="Search or start new chat" v-model="searchInput">
                     </div>
+                </div>
+                <!-- no results in search -->
+                <div class="no-results text-center" v-if="allHidden == true">
+                    <span>No chats, contacts or messages found</span>
                 </div>
                 <!-- chat list -->
                 <div class="chat-list w-100">
                     <!-- single chat preview -->
-                    <div class="chat-preview w-100 flex-center-y" v-for="(item, i) in contacts" @click="openChat(i)">
+                    <div class="chat-preview w-100 flex-center-y" v-for="(item, i) in contacts" @click="openChat(i)" :class="{hide : !item.visible}">
                         <!-- avatar -->
                         <div class="avatar circle-big mx-1">
                             <img :src="('img/avatar' + item.avatar + '.jpg')" :alt="(item.name + '\'s avatar')">
@@ -111,6 +115,39 @@
                         </div>
                     </div>
                     <div class="bottom-bar w-100 absolute bottom-0"></div>
+                </div>
+                <!-- chat page -->
+                <div class="chat-page wh-100 flex-column" v-else>
+                    <!-- chat header -->
+                    <div class="chat-header header flex-center-y justify-between">
+                        <!-- user info -->
+                        <div class="user-info flex mx-1">
+                            <div class="user-avatar avatar circle me-1">
+                                <img :src="'img/avatar' + contacts[selectedChat].avatar + '.jpg'" alt="">
+                            </div>
+                            <div class="user-details flex-column justify-center">
+                                <h4>{{contacts[selectedChat].name}}</h4>
+                                <h5>last seen today at 0:00 AM</h5>
+                            </div>
+                        </div>
+                        <!-- right icons -->
+                        <div class="header-icons me-05 flex">
+                            <div class="icon search-icon flex-center circle">
+                                <svg viewBox="0 0 24 24" width="24" height="24" class=""><path d="M15.009 13.805h-.636l-.22-.219a5.184 5.184 0 0 0 1.256-3.386 5.207 5.207 0 1 0-5.207 5.208 5.183 5.183 0 0 0 3.385-1.255l.221.22v.635l4.004 3.999 1.194-1.195-3.997-4.007zm-4.808 0a3.605 3.605 0 1 1 0-7.21 3.605 3.605 0 0 1 0 7.21z"></path></svg>
+                            </div>
+                            <div class="icon settings flex-center mx-05 circle">
+                                <svg viewBox="0 0 24 24" width="24" height="24" class=""><path d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- chat body -->
+                    <div class="chat-body w-100 relative">
+                        <div class="chat-background wh-100 absolute"></div>
+                    </div>
+                    <!-- chat footer -->
+                    <div class="chat-footer w-100">
+
+                    </div>
                 </div>
             </div>
         </div>
