@@ -82,7 +82,7 @@ const app = new Vue({
                 ],
             },
         ],
-        
+        searchIcon: false,
     },
     methods: {
 

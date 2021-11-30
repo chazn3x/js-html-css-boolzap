@@ -1,3 +1,7 @@
+*:not(input) {
+    user-select: none;
+    -webkit-user-select: none;
+}
 /* body */
 body {
     width: 100%;
@@ -6,9 +10,10 @@ body {
         rgb(37,191,165) 220px,
         rgb(9,14,17) 0
     );
+    color: rgba(255,255,255,.9);
 }
 svg path:first-child {
-    fill: rgb(177, 179, 181);
+    fill: rgb(130, 134, 137);
 }
 /* app */
 .frame {
@@ -23,9 +28,11 @@ svg path:first-child {
     }
 }
 .header {
-    width: 100%;
     height: 60px;
     background: rgb(42,47,50);
+}
+.header svg path:first-child {
+    fill: rgb(177, 179, 181);
 }
 .header-icons .icon {
     cursor: pointer;
@@ -38,8 +45,6 @@ svg path:first-child {
     overflow: hidden;
     border: 1px solid #fff2;
     cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
 }
 .circle {
     width: 40px;
@@ -51,6 +56,68 @@ svg path:first-child {
     flex: 3;
     min-width: 300px;
     border-right: 1px solid #fff2;
+}
+/* notifications alert */
+.notify-alert {
+    height: 90px;
+    background: rgb(20,83,115);
+    cursor: pointer;
+}
+.notify-alert .icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+.notify-alert .icon  svg path:first-child {
+    fill: rgb(177, 179, 181);
+}
+.notify-alert .alert-text h3 {
+    font-weight: 100;
+    font-size: 1rem;
+    margin-bottom: .4rem;
+}
+.notify-alert .alert-text a {
+    font-weight: 100;
+    font-size: .9rem;
+    color: rgba(255,255,255,.9);
+}
+.notify-alert .alert-text a:hover {
+    text-decoration: underline;
+}
+.notify-alert .alert-text i {
+    margin-left: .2rem;
+    font-size: .6rem;
+}
+/* searchbar */
+.search-bar {
+    height: 50px;
+    border-bottom: 1px solid #fff2;
+}
+.search-bar .search-area {
+    width: 90%;
+    height: 36px;
+    border-radius: 18px;
+    background: rgb(50,55,57);
+}
+.search-bar .icon {
+    cursor: pointer;
+}
+.search-bar .search-icon svg path:first-child {
+    fill: rgb(130, 134, 137);
+}
+.search-bar .back-icon i {
+    color: rgb(130, 134, 137);
+}
+.search-bar .search-area input {
+    outline: none;
+    background: none;
+    border: none;
+    font-size: .9rem;
+    font-weight: 100;
+    color: rgba(255,255,255,.9);
+}
+.search-bar .search-area input::placeholder {
+    color: rgb(130, 134, 137);
 }
 /* right col */
 .chat-col {
