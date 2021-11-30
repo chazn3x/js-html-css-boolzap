@@ -34,11 +34,13 @@ svg path:first-child {
 .header svg path:first-child {
     fill: rgb(177, 179, 181);
 }
-.header-icons .icon {
+.header-icons .icon,
+.chat-footer .icon {
     cursor: pointer;
     transition: background-color .3s;
 }
-.header-icons .icon:active {
+.header-icons .icon:active,
+.chat-footer .icon:active {
     background-color: rgb(64,68,71);
 }
 .avatar {
@@ -164,8 +166,10 @@ svg path:first-child {
     font-size: .8rem;
     font-weight: 100;
     color: rgba(255,255,255,.6);
-    white-space: nowrap; 
-    width: auto;
+    white-space: nowrap;
+    display: inline-block;
+    width: 14vw;
+    min-width: 85%;
     overflow: hidden;
     text-overflow: ellipsis; 
     
@@ -267,4 +271,5 @@ svg path:first-child {
 /* chat input */
 .chat-footer {
     height: 60px;
+    background: rgb(30,36,40);
 }
