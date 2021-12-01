@@ -69,7 +69,7 @@
                 <!-- chat list -->
                 <div class="chat-list w-100">
                     <!-- single chat preview -->
-                    <div class="chat-preview w-100 flex-center-y" v-for="(item, i) in contacts" @click="openChat(i)" :class="{hide : !item.visible}">
+                    <div class="chat-preview w-100 flex-center-y" v-for="(item, i) in contacts" @click="openChat(i)" :class="{hide : !item.visible, active : i == selectedChat}">
                         <!-- avatar -->
                         <div class="avatar circle-big mx-1">
                             <img :src="('img/avatar' + item.avatar + '.jpg')" :alt="(item.name + '\'s avatar')">
@@ -82,13 +82,16 @@
                                     <span>{{item.messages[item.msgLength].newData[0]}}</span>
                                 </div>
                             </div>
-                            <div class="chat-info-bottom flex justify-between w-100">
+                            <div class="chat-info-bottom flex-center-y w-100">
+                                <div class="icon read" v-if="item.messages[item.msgLength].status == 'sent'">
+                                    <svg viewBox="0 0 18 18" width="18" height="18" class=""><path d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"></path></svg>
+                                </div>
                                 <h5>{{item.messages[item.msgLength].message}}</h5>
                                 <div class="icons relative">
-                                    <div class="mute-icon absolute" v-if="item.muted" @click="item.muted = false">
+                                    <div class="mute-icon absolute" v-if="item.muted">
                                         <svg viewBox="0 0 16 18" width="16" height="18" class=""><path d="M11.52 9.206c0-1.4-.778-2.567-1.944-3.111v1.711L11.52 9.75v-.544zm1.945 0c0 .7-.156 1.4-.389 2.022l1.167 1.167c.544-.933.778-2.1.778-3.267 0-3.344-2.333-6.144-5.444-6.844v1.633c2.255.778 3.888 2.8 3.888 5.289zm-11.433-7L1.02 3.217l3.656 3.656H1.02v4.667h3.111l3.889 3.889v-5.211l3.344 3.344c-.544.389-1.089.7-1.789.933v1.633a6.64 6.64 0 0 0 2.878-1.4l1.556 1.556 1.011-1.011-7-7-5.988-6.067zm5.988.778L6.387 4.617 8.02 6.25V2.984z"></path></svg>
                                     </div>
-                                    <div class="menu-icon absolute" @click="item.muted = true">
+                                    <div class="menu-icon absolute" @click="item.muted = !item.muted">
                                         <i class="fas fa-chevron-down"></i>
                                     </div>
                                 </div>
@@ -141,8 +144,30 @@
                         </div>
                     </div>
                     <!-- chat body -->
-                    <div class="chat-body w-100 relative">
+                    <div class="chat-body wh-100 relative">
+                        <!-- background -->
                         <div class="chat-background wh-100 absolute"></div>
+                        <!-- messages -->
+                        <div class="messages w-100 flex-column absolute bottom-0">
+                            <!-- single message -->
+                            <div class="message-row flex relative" v-for="item in contacts[selectedChat].messages" :class="item.status">
+                                <div class="message relative clearfix">
+                                    <span class="msg-text inline-block p-05">{{item.message}}</span>
+                                    <!-- msg info -->
+                                    <div class="inline-block">
+                                        <div class="msg-info absolute bottom-0 right-0 flex">
+                                            <span class="msg-time inline-block">{{item.newData[1]}}</span>
+                                            <div class="icon read inline-block" v-if="item.status == 'sent'">
+                                                <svg viewBox="0 0 18 18" width="18" height="18" class=""><path d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"></path></svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="message-tail absolute">
+                                    <svg viewBox="0 0 8 13" width="8" height="13" class=""><path opacity=".13" d="M5.188 1H0v11.193l6.467-8.625C7.526 2.156 6.958 1 5.188 1z"></path><path d="M5.188 0H0v11.193l6.467-8.625C7.526 1.156 6.958 0 5.188 0z"></path></svg>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- chat footer -->
                     <div class="chat-footer w-100 flex-center-y justify-between">
@@ -157,12 +182,13 @@
                         </div>
                         <!-- input message -->
                         <div class="message-area w-100 flex-center-y">
-                            <input class="w-100 h-70" type="text" autocomplete="false" spellcheck="false" placeholder="Type a message" v-model="messageInput">
+                            <input class="w-100 h-70" type="text" autocomplete="false" spellcheck="false" placeholder="Type a message" v-model="messageInput" @keydown.enter="sendMessage()">
                         </div>
+                        <!-- right icons -->
                         <div class="mic icon circle flex-center mx-1" v-if="messageInput == ''">
                             <svg viewBox="0 0 24 24" width="24" height="24" class=""><path d="M11.999 14.942c2.001 0 3.531-1.53 3.531-3.531V4.35c0-2.001-1.53-3.531-3.531-3.531S8.469 2.35 8.469 4.35v7.061c0 2.001 1.53 3.531 3.53 3.531zm6.238-3.53c0 3.531-2.942 6.002-6.237 6.002s-6.237-2.471-6.237-6.002H3.761c0 4.001 3.178 7.297 7.061 7.885v3.884h2.354v-3.884c3.884-.588 7.061-3.884 7.061-7.885h-2z"></path></svg>
                         </div>
-                        <div class="send icon circle flex-center mx-1" v-else>
+                        <div class="send icon circle flex-center mx-1" v-else @click="sendMessage()">
                             <svg viewBox="0 0 24 24" width="24" height="24" class=""><path d="M1.101 21.757L23.8 12.028 1.101 2.3l.011 7.912 13.623 1.816-13.623 1.817-.011 7.912z"></path></svg>
                         </div>
                     </div>

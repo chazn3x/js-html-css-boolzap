@@ -42,7 +42,7 @@ const app = new Vue({
                 {
                     date: '20/03/2020 16:35:00',
                     message: 'Mi piacerebbe ma devo andare a fare la spesa.',
-                    status: 'received'
+                    status: 'sent'
                 }
                 ],
                 msgLength: 0,
@@ -90,7 +90,7 @@ const app = new Vue({
                 muted: true
             },
         ],
-        viewChat: true,
+        viewChat: false,
         selectedChat: 0,
         searchInput: "",
         searching: false,
@@ -138,6 +138,46 @@ const app = new Vue({
             if (this.searchInput == "") {
                 this.searching = false;
             } else this.searching = true;
+        },
+        sendMessage: function() {
+            const data = new Date();
+            let newData = '', newTime = '';
+            const day = data.getDate();
+            let month = (data.getMonth() + 1).toString();
+            const year = data.getFullYear();
+            let hour = data.getHours();
+            let minutes = data.getMinutes();
+            switch (hour) {
+                case 0: hour = 12; break;
+                case 13: hour = 1; break;
+                case 14: hour = 2; break;
+                case 15: hour = 3; break;
+                case 16: hour = 4; break;
+                case 17: hour = 5; break;
+                case 18: hour = 6; break;
+                case 19: hour = 7; break;
+                case 20: hour = 8; break;
+                case 21: hour = 9; break;
+                case 22: hour = 10; break;
+                case 23: hour = 11; break;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            newData = day + "/" + month + "/" + year;
+            newTime = hour + ":" + minutes;
+            if (data.getHours() < 12) {
+                newTime += " AM";
+            } else newTime += " PM";
+            const newMessage = 
+            {
+                date: newData + " " + newTime,
+                message: this.messageInput,
+                status: 'sent',
+                newData: [newData, newTime]
+            }
+            this.contacts[this.selectedChat].messages.push(newMessage);
+            this.messageInput = "";
         }
     },
     created() {
@@ -146,5 +186,6 @@ const app = new Vue({
     },
     updated() {
         this.getSearchedContacts();
+        this.getMsgLength();
     }
 });
