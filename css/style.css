@@ -353,17 +353,6 @@ svg path:first-child {
 .chat-body .message-row.received .message-tail svg path {
     fill: rgb(38,45,48);
 }
-/* .chat-body .message-row.sent:after {
-    content: '';
-    position: absolute;
-    right: -.5rem;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: .6rem .6rem 0 0;
-    border-color: rgb(17,97,98) transparent transparent transparent;
-    border-radius: 0 .3rem 0 0;
-} */
 .chat-body .message-row.received {
     justify-content: flex-start;
 }

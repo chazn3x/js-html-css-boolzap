@@ -176,8 +176,10 @@ const app = new Vue({
                 status: 'sent',
                 newData: [newData, newTime]
             }
-            this.contacts[this.selectedChat].messages.push(newMessage);
-            this.messageInput = "";
+            if (this.messageInput != "") {
+                this.contacts[this.selectedChat].messages.push(newMessage);
+                this.messageInput = "";
+            }
         }
     },
     created() {
