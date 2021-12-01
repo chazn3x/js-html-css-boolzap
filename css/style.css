@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 *:not(input) {
     user-select: none;
     -webkit-user-select: none;
+}
+* {
+    font-family: 'Lato', sans-serif;
 }
 /* body */
 body {
@@ -75,7 +79,7 @@ svg path:first-child {
 .main-col {
     flex: 3;
     min-width: 300px;
-    border-right: 1px solid #fff2;
+    z-index: 3;
 }
 /* notifications alert */
 .notify-alert {
@@ -95,12 +99,12 @@ svg path:first-child {
     fill: rgb(177, 179, 181);
 }
 .notify-alert .alert-text h3 {
-    font-weight: 100;
+    font-weight: 400;
     font-size: 1rem;
     margin-bottom: .4rem;
 }
 .notify-alert .alert-text a {
-    font-weight: 100;
+    font-weight: 300;
     font-size: .9rem;
     color: rgba(255,255,255,.9);
 }
@@ -135,7 +139,7 @@ svg path:first-child {
     background: none;
     border: none;
     font-size: .9rem;
-    font-weight: 100;
+    font-weight: 300;
     color: rgba(255,255,255,.9);
     margin-left: 1.5rem;
 }
@@ -146,7 +150,7 @@ svg path:first-child {
 .no-results {
     margin-top: 5rem;
     color: rgba(255,255,255,.6);
-    font-weight: 100;
+    font-weight: 300;
     font-size: .9rem;
 }
 .chat-list {
@@ -173,11 +177,11 @@ svg path:first-child {
 }
 .chat-preview .chat-info .chat-info-top h4 {
     font-size: 1rem;
-    font-weight: 100;
+    font-weight: 500;
 }
 .chat-preview .chat-info .chat-info-bottom h5 {
     font-size: .8rem;
-    font-weight: 100;
+    font-weight: 400;
     color: rgba(255,255,255,.6);
     white-space: nowrap;
     display: inline-block;
@@ -198,8 +202,8 @@ svg path:first-child {
 }
 .chat-info .last-msg-time {
     color: rgba(255,255,255,.6);
-    font-weight: 100;
-    font-size: .8rem;
+    font-weight: 400;
+    font-size: .75rem;
 }
 .chat-info .icons {
     width: 50px;
@@ -227,6 +231,7 @@ svg path:first-child {
 }
 /* landing page */
 .landing-page {
+    border-left: 1px solid #fff2;
     background: rgb(34,47,54);
 }
 .landing-content {
@@ -238,12 +243,12 @@ svg path:first-child {
     width: 350px;
 }
 .landing-page h2 {
-    font-weight: 100;
-    font-size: 2rem;
+    font-weight: 300;
+    font-size: 2.5rem;
     cursor: default;
 }
 .landing-page p {
-    font-weight: 100;
+    font-weight: 400;
     font-size: .9rem;
     line-height: 1.5rem;
     color: rgba(255,255,255,.6);
@@ -260,16 +265,20 @@ svg path:first-child {
     background: rgb(17,97,98);
 }
 /* chat page */
-
 /* chat header */
+.chat-header {
+    border-left: 1px solid #fff2;
+    z-index: 2;
+    box-shadow: 0 1px 7px #000c;
+}
 .chat-header .user-info h4 {
     font-size: 1rem;
-    font-weight: 100;
+    font-weight: 600;
     margin: .2em 0;
 }
 .chat-header .user-info h5 {
     font-size: .8rem;
-    font-weight: 100;
+    font-weight: 400;
     color: rgba(255,255,255,.6);
     margin: .2em 0;
 }
@@ -279,6 +288,7 @@ svg path:first-child {
 }
 /* chat messages */
 .chat-body {
+    border-left: 1px solid #fff2;
     background: rgb(13,20,24);
     flex: 1;
 }
@@ -301,18 +311,19 @@ svg path:first-child {
     max-width: 500px;
 }
 .chat-body .message .msg-text {
-    user-select: text;
-    -webkit-user-select: text;
-    font-weight: 100;
+    user-select: auto;
+    -webkit-user-select: auto;
+    font-weight: 400;
     font-size: .9rem;
+    color: rgba(255,255,255,.8);
 }
 .chat-body .message>div {
     float: right;
-    height: 1rem;
-    width: 50px;
+    /* height: 1rem; */
+    width: 55px;
 }
 .chat-body .message-row.sent .message>div {
-    width: 70px;
+    width: 75px;
 }
 .chat-body .message .msg-info {
     padding: 0 0.3rem 0.3rem;
@@ -327,7 +338,7 @@ svg path:first-child {
 }
 .chat-body .message .msg-time {
     font-size: .7rem;
-    font-weight: 100;
+    font-weight: 500;
     color: rgba(255,255,255,.6);
 }
 .chat-body .message-row.sent {
@@ -338,14 +349,14 @@ svg path:first-child {
     background: rgb(17,97,98);
 }
 .chat-body .message-row.sent .message-tail {
-    top: -1px;
+    top: -3px;
     right: -7px;
 }
 .chat-body .message-row.sent .message-tail svg path {
     fill: rgb(17,97,98);
 }
 .chat-body .message-row.received .message-tail {
-    top: -1px;
+    top: -3px;
     left: -7px;
     transform: rotateX(180deg) rotateZ(180deg);
     -webkit-transform: rotateX(180deg) rotateZ(180deg);
@@ -362,6 +373,7 @@ svg path:first-child {
 }
 /* chat input */
 .chat-footer {
+    border-left: 1px solid #fff2;
     height: 60px;
     background: rgb(30,36,40);
 }
@@ -374,8 +386,8 @@ svg path:first-child {
     outline: none;
     background: none;
     border: none;
-    font-size: .9rem;
-    font-weight: 100;
+    font-size: 1rem;
+    font-weight: 300;
     color: rgba(255,255,255,.9);
     margin-left: 1.5rem;
 }

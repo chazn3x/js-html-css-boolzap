@@ -91,7 +91,7 @@ const app = new Vue({
             },
         ],
         viewChat: false,
-        selectedChat: 0,
+        selectedChat: null,
         searchInput: "",
         searching: false,
         hideNotifyAlert: false,
@@ -180,7 +180,7 @@ const app = new Vue({
                 this.contacts[this.selectedChat].messages.push(newMessage);
                 this.messageInput = "";
             }
-        }
+        },
     },
     created() {
         this.getMsgLength();

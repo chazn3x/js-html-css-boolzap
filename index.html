@@ -87,7 +87,7 @@
                                     <svg viewBox="0 0 18 18" width="18" height="18" class=""><path d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"></path></svg>
                                 </div>
                                 <h5>{{item.messages[item.msgLength].message}}</h5>
-                                <div class="icons relative">
+                                <div class="icons relative right">
                                     <div class="mute-icon absolute" v-if="item.muted">
                                         <svg viewBox="0 0 16 18" width="16" height="18" class=""><path d="M11.52 9.206c0-1.4-.778-2.567-1.944-3.111v1.711L11.52 9.75v-.544zm1.945 0c0 .7-.156 1.4-.389 2.022l1.167 1.167c.544-.933.778-2.1.778-3.267 0-3.344-2.333-6.144-5.444-6.844v1.633c2.255.778 3.888 2.8 3.888 5.289zm-11.433-7L1.02 3.217l3.656 3.656H1.02v4.667h3.111l3.889 3.889v-5.211l3.344 3.344c-.544.389-1.089.7-1.789.933v1.633a6.64 6.64 0 0 0 2.878-1.4l1.556 1.556 1.011-1.011-7-7-5.988-6.067zm5.988.778L6.387 4.617 8.02 6.25V2.984z"></path></svg>
                                     </div>
@@ -182,7 +182,7 @@
                         </div>
                         <!-- input message -->
                         <div class="message-area w-100 flex-center-y">
-                            <input class="w-100 h-70" type="text" autocomplete="false" spellcheck="false" placeholder="Type a message" v-model="messageInput" @keydown.enter="sendMessage()">
+                            <input id="message-input" class="w-100 h-70" type="text" autocomplete="false" spellcheck="false" placeholder="Type a message" v-model="messageInput" @keydown.enter="sendMessage()">
                         </div>
                         <!-- right icons -->
                         <div class="mic icon circle flex-center mx-1" v-if="messageInput == ''">
