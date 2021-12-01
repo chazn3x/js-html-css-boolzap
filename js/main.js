@@ -81,7 +81,7 @@ const app = new Vue({
                     status: 'sent'
                 },
                 {
-                    date: '10/01/2020 15:50:00',
+                    date: '20/11/2021 15:50:00',
                     message: 'Si, ma preferirei andare al cinema',
                     status: 'received'
                 }
@@ -107,9 +107,71 @@ const app = new Vue({
         newDates: function() {
             this.contacts.forEach(contact => {
                 contact.messages.forEach(message => {
+                    let newDate = [];
                     for (let i = 0; i < message.date.length; i++) {
                         message.newData = message.date.split(" ");
+                        newDate = message.date.split(" ");
                     }
+                    // day date
+                    let dayDate
+                    for (let i = 0; i < newDate[0].length; i++) {
+                        dayDate = newDate[0].split("/");
+                    }
+                    dayDate.forEach((item, i) => {
+                        if (item[0] == "0") {
+                            dayDate[i] = item.slice(1);
+                        }
+                    });
+                    let timeDate
+                    for (let i = 0; i < newDate[1].length; i++) {
+                        timeDate = newDate[1].split(":");
+                    }
+                    if (timeDate[0][0] == "0") {
+                        timeDate[0] = timeDate[0].slice(1);
+                    }
+                    let newTime = timeDate[0] + ":" + timeDate[1];
+                    if (timeDate[0] < 12) {
+                        newTime += " AM";
+                    } else newTime += " PM";
+                    // from today
+                    const data = new Date();
+                    // let newData = '', newTime = '';
+                    const day = data.getDate();
+                    let month = (data.getMonth() + 1);
+                    const year = data.getFullYear();
+                    let hour = data.getHours();
+                    let minutes = data.getMinutes();
+                    // switch (hour) {
+                    //     case 0: hour = 12; break;
+                    //     case 13: hour = 1; break;
+                    //     case 14: hour = 2; break;
+                    //     case 15: hour = 3; break;
+                    //     case 16: hour = 4; break;
+                    //     case 17: hour = 5; break;
+                    //     case 18: hour = 6; break;
+                    //     case 19: hour = 7; break;
+                    //     case 20: hour = 8; break;
+                    //     case 21: hour = 9; break;
+                    //     case 22: hour = 10; break;
+                    //     case 23: hour = 11; break;
+                    // }
+                    if (minutes < 10) {
+                        minutes = "0" + minutes;
+                    }
+                    if ((dayDate[2] == year) && (dayDate[1] == month) && ((dayDate[0]) == day)) {
+                        console.log("recent");
+                        let newTime = hour + ":" + minutes;
+                        if (data.getHours() < 12) {
+                            newTime += " AM";
+                        } else newTime += " PM";
+                        message.newData[0] = newTime;
+                        message.newData[1] = newTime;
+                    } else {
+                        console.log("old");
+                        message.newData[0] = dayDate.join("/");
+                        message.newData[1] = newTime;
+                    }
+                    console.log(dayDate);
                 });
             });
         },
@@ -147,20 +209,20 @@ const app = new Vue({
             const year = data.getFullYear();
             let hour = data.getHours();
             let minutes = data.getMinutes();
-            switch (hour) {
-                case 0: hour = 12; break;
-                case 13: hour = 1; break;
-                case 14: hour = 2; break;
-                case 15: hour = 3; break;
-                case 16: hour = 4; break;
-                case 17: hour = 5; break;
-                case 18: hour = 6; break;
-                case 19: hour = 7; break;
-                case 20: hour = 8; break;
-                case 21: hour = 9; break;
-                case 22: hour = 10; break;
-                case 23: hour = 11; break;
-            }
+            // switch (hour) {
+            //     case 0: hour = 12; break;
+            //     case 13: hour = 1; break;
+            //     case 14: hour = 2; break;
+            //     case 15: hour = 3; break;
+            //     case 16: hour = 4; break;
+            //     case 17: hour = 5; break;
+            //     case 18: hour = 6; break;
+            //     case 19: hour = 7; break;
+            //     case 20: hour = 8; break;
+            //     case 21: hour = 9; break;
+            //     case 22: hour = 10; break;
+            //     case 23: hour = 11; break;
+            // }
             if (minutes < 10) {
                 minutes = "0" + minutes;
             }
@@ -180,6 +242,7 @@ const app = new Vue({
                 this.contacts[this.selectedChat].messages.push(newMessage);
                 this.messageInput = "";
             }
+            this.newDates();
         },
     },
     created() {
