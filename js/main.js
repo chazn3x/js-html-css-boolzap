@@ -104,77 +104,6 @@ const app = new Vue({
                 contact.msgLength = contact.messages.length - 1;
             });
         },
-        newDates: function() {
-            this.contacts.forEach(contact => {
-                contact.messages.forEach(message => {
-                    let newDate = [];
-                    for (let i = 0; i < message.date.length; i++) {
-                        message.newData = message.date.split(" ");
-                        newDate = message.date.split(" ");
-                    }
-                    // day date
-                    let dayDate
-                    for (let i = 0; i < newDate[0].length; i++) {
-                        dayDate = newDate[0].split("/");
-                    }
-                    dayDate.forEach((item, i) => {
-                        if (item[0] == "0") {
-                            dayDate[i] = item.slice(1);
-                        }
-                    });
-                    let timeDate
-                    for (let i = 0; i < newDate[1].length; i++) {
-                        timeDate = newDate[1].split(":");
-                    }
-                    if (timeDate[0][0] == "0") {
-                        timeDate[0] = timeDate[0].slice(1);
-                    }
-                    let newTime = timeDate[0] + ":" + timeDate[1];
-                    if (timeDate[0] < 12) {
-                        newTime += " AM";
-                    } else newTime += " PM";
-                    // from today
-                    const data = new Date();
-                    // let newData = '', newTime = '';
-                    const day = data.getDate();
-                    let month = (data.getMonth() + 1);
-                    const year = data.getFullYear();
-                    let hour = data.getHours();
-                    let minutes = data.getMinutes();
-                    // switch (hour) {
-                    //     case 0: hour = 12; break;
-                    //     case 13: hour = 1; break;
-                    //     case 14: hour = 2; break;
-                    //     case 15: hour = 3; break;
-                    //     case 16: hour = 4; break;
-                    //     case 17: hour = 5; break;
-                    //     case 18: hour = 6; break;
-                    //     case 19: hour = 7; break;
-                    //     case 20: hour = 8; break;
-                    //     case 21: hour = 9; break;
-                    //     case 22: hour = 10; break;
-                    //     case 23: hour = 11; break;
-                    // }
-                    if (minutes < 10) {
-                        minutes = "0" + minutes;
-                    }
-                    if ((dayDate[2] == year) && (dayDate[1] == month) && ((dayDate[0]) == day)) {
-                        console.log("recent");
-                        let newTime = hour + ":" + minutes;
-                        if (data.getHours() < 12) {
-                            newTime += " AM";
-                        } else newTime += " PM";
-                        message.newData[0] = newTime;
-                        message.newData[1] = newTime;
-                    } else {
-                        console.log("old");
-                        message.newData[0] = dayDate.join("/");
-                        message.newData[1] = newTime;
-                    }
-                    console.log(dayDate);
-                });
-            });
-        },
         openChat: function(i) {
             this.viewChat = true;
             this.selectedChat = i;
@@ -202,55 +131,47 @@ const app = new Vue({
             } else this.searching = true;
         },
         sendMessage: function() {
-            const data = new Date();
-            let newData = '', newTime = '';
-            const day = data.getDate();
-            let month = (data.getMonth() + 1).toString();
-            const year = data.getFullYear();
-            let hour = data.getHours();
-            let minutes = data.getMinutes();
-            // switch (hour) {
-            //     case 0: hour = 12; break;
-            //     case 13: hour = 1; break;
-            //     case 14: hour = 2; break;
-            //     case 15: hour = 3; break;
-            //     case 16: hour = 4; break;
-            //     case 17: hour = 5; break;
-            //     case 18: hour = 6; break;
-            //     case 19: hour = 7; break;
-            //     case 20: hour = 8; break;
-            //     case 21: hour = 9; break;
-            //     case 22: hour = 10; break;
-            //     case 23: hour = 11; break;
-            // }
-            if (minutes < 10) {
-                minutes = "0" + minutes;
-            }
-            newData = day + "/" + month + "/" + year;
-            newTime = hour + ":" + minutes;
-            if (data.getHours() < 12) {
-                newTime += " AM";
-            } else newTime += " PM";
+            const fullDate = dayjs().format("DD/MM/YYYY HH:mm:ss");
             const newMessage = 
             {
-                date: newData + " " + newTime,
+                date: fullDate,
                 message: this.messageInput,
                 status: 'sent',
-                newData: [newData, newTime]
+                newDate: this.getDate(fullDate)
             }
             if (this.messageInput != "") {
                 this.contacts[this.selectedChat].messages.push(newMessage);
                 this.messageInput = "";
             }
-            this.newDates();
+            this.getMsgLength();
+            this.lastMsgReorder();
+            this.selectedChat = 0;
+        },
+        getDate: function(fullDate) {
+            const date = dayjs(fullDate, "DD/MM/YYYY HH:mm:ss").format("M/D/YYYY");
+            const time = dayjs(fullDate, "DD/MM/YYYY HH:mm:ss").format("h:mm A");
+            const newDate = [date, time];
+            return newDate;
+        },
+        changeDates: function() {
+            this.contacts.forEach(contact => {
+                contact.messages.forEach(message => {
+                    message.newDate = this.getDate(message.date);
+                });
+            });
+        },
+        lastMsgReorder: function() {
+            function reorder(a, b) {
+                const date = dayjs(a.messages[a.msgLength].date, "DD/MM/YYYY HH:mm:ss");
+                const date1 = dayjs(b.messages[b.msgLength].date, "DD/MM/YYYY HH:mm:ss");
+                return date > date1 ? -1 : 1;
+            }
+            this.contacts.sort(reorder);
         },
     },
     created() {
         this.getMsgLength();
-        this.newDates();
-    },
-    updated() {
-        this.getSearchedContacts();
-        this.getMsgLength();
+        this.changeDates();
+        this.lastMsgReorder();
     }
 });

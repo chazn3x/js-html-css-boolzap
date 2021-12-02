@@ -311,6 +311,8 @@ svg path:first-child {
     max-width: 500px;
 }
 .chat-body .message .msg-text {
+    max-width: 100%;
+    word-wrap: break-word;
     user-select: auto;
     -webkit-user-select: auto;
     font-weight: 400;
@@ -319,7 +321,7 @@ svg path:first-child {
 }
 .chat-body .message>div {
     float: right;
-    /* height: 1rem; */
+    height: .5rem;
     width: 55px;
 }
 .chat-body .message-row.sent .message>div {
