@@ -142,10 +142,11 @@ const app = new Vue({
             if (this.messageInput != "") {
                 this.contacts[this.selectedChat].messages.push(newMessage);
                 this.messageInput = "";
+                this.getMsgLength();
+                this.lastMsgReorder();
+                this.selectedChat = 0;
+                this.botMsg();
             }
-            this.getMsgLength();
-            this.lastMsgReorder();
-            this.selectedChat = 0;
         },
         getDate: function(fullDate) {
             const date = dayjs(fullDate, "DD/MM/YYYY HH:mm:ss").format("M/D/YYYY");
@@ -160,6 +161,14 @@ const app = new Vue({
                 });
             });
         },
+        addLastSeen: function() {
+            this.contacts.forEach(contact => {
+                const h = Math.floor(Math.random() * dayjs().format("H"));
+                const m = Math.floor(Math.random() * 60);
+                const time = dayjs(h + ":" + m, "H:m").format("h:mm A");
+                contact.lastSeen = "last seen at " + time;
+            });
+        },
         lastMsgReorder: function() {
             function reorder(a, b) {
                 const date = dayjs(a.messages[a.msgLength].date, "DD/MM/YYYY HH:mm:ss");
@@ -168,10 +177,39 @@ const app = new Vue({
             }
             this.contacts.sort(reorder);
         },
+        botMsg: function() {
+            const ref = this;
+            const thisChat = ref.selectedChat;
+            this.contacts[this.selectedChat].lastSeen = "typing...";
+            setTimeout(function(){
+                const fullDate = dayjs().format("DD/MM/YYYY HH:mm:ss");
+                const newMessage = 
+                {
+                    date: fullDate,
+                    message: randomAnswer(),
+                    status: 'received',
+                    newDate: ref.getDate(fullDate),
+                };
+                ref.contacts[thisChat].messages.push(newMessage);
+                ref.getMsgLength();
+                ref.lastMsgReorder();
+                ref.contacts[thisChat].lastSeen = "Online";
+                function randomAnswer() {
+                    const answers = ["Okay", "A presto!", "Ciao", "Tutto bene", "No", "Sì"];
+                    const choose = Math.floor(Math.random() * answers.length);
+                    return answers[choose];
+                };
+            },3000);
+            setTimeout(function(){
+                const time = dayjs().format("h:mm A");
+                ref.contacts[thisChat].lastSeen = "last seen at " + time;
+            }, 4000);
+        },
     },
     created() {
         this.getMsgLength();
         this.changeDates();
         this.lastMsgReorder();
+        this.addLastSeen();
     }
 });
