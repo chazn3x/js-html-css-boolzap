@@ -7,17 +7,17 @@ const app = new Vue({
                 avatar: '_1',
                 visible: true,
                 messages: [{
-                    date: '10/01/2020 15:30:55',
+                    date: '02/12/2021 15:30:55',
                     message: 'Hai portato a spasso il cane?',
                     status: 'sent'
                 },
                 {
-                    date: '10/01/2020 15:50:00',
+                    date: '02/12/2021 15:50:00',
                     message: 'Ricordati di dargli da mangiare',
                     status: 'sent'
                 },
                 {
-                    date: '10/01/2020 16:15:22',
+                    date: '02/12/2021 16:15:22',
                     message: 'Tutto fatto!',
                     status: 'received'
                 }
@@ -30,17 +30,17 @@ const app = new Vue({
                 avatar: '_2',
                 visible: true,
                 messages: [{
-                    date: '20/03/2020 16:30:00',
+                    date: '03/12/2021 16:30:00',
                     message: 'Ciao come stai?',
                     status: 'sent'
                 },
                 {
-                    date: '20/03/2020 16:30:55',
+                    date: '03/12/2021 16:30:55',
                     message: 'Bene grazie! Stasera ci vediamo?',
                     status: 'received'
                 },
                 {
-                    date: '20/03/2020 16:35:00',
+                    date: '03/12/2021 16:35:00',
                     message: 'Mi piacerebbe ma devo andare a fare la spesa.',
                     status: 'sent'
                 }
@@ -53,17 +53,17 @@ const app = new Vue({
                 avatar: '_3',
                 visible: true,
                 messages: [{
-                    date: '28/03/2020 10:10:40',
+                    date: '29/11/2021 10:10:40',
                     message: 'La Marianna va in campagna',
                     status: 'received'
                 },
                 {
-                    date: '28/03/2020 10:20:10',
+                    date: '29/11/2021 10:20:10',
                     message: 'Sicuro di non aver sbagliato chat?',
                     status: 'sent'
                 },
                 {
-                    date: '28/03/2020 16:15:22',
+                    date: '29/11/2021 16:15:22',
                     message: 'Ah scusa!',
                     status: 'received'
                 }
@@ -158,7 +158,7 @@ const app = new Vue({
                     },
                 ],
                 msgLength: 0,
-                muted: true
+                muted: false
             },
             {
                 name: 'Antonio',
@@ -238,12 +238,12 @@ const app = new Vue({
                 {
                     date: '23/11/2021 10:43:00',
                     message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, hic?',
-                    status: 'received'
+                    status: 'sent'
                 },
                 {
                     date: '23/11/2021 10:51:22',
                     message: 'Lorem, ipsum dolor sit amet consectetur adipisicing.',
-                    status: 'sent'
+                    status: 'received'
                 },
                 {
                     date: '23/11/2021 11:11:10',
@@ -253,38 +253,38 @@ const app = new Vue({
                 {
                     date: '23/11/2021 12:20:54',
                     message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis assumenda ea tempore accusamus deserunt aliquam fuga sapiente vitae excepturi. Nam officiis laborum adipisci earum blanditiis explicabo?',
-                    status: 'sent'
+                    status: 'received'
                 },
                 ],
                 msgLength: 0,
-                muted: false
+                muted: true
             },
             {
                 name: 'Luca',
                 avatar: '_8',
                 visible: true,
                 messages: [{
-                    date: '13/09/2021 10:30:43',
+                    date: '03/12/2021 10:30:43',
                     message: 'Lorem ipsum dolor sit amet.',
                     status: 'sent'
                 },
                 {
-                    date: '13/09/2021 10:43:00',
+                    date: '03/12/2021 10:43:00',
                     message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, hic?',
                     status: 'received'
                 },
                 {
-                    date: '13/09/2021 10:51:22',
+                    date: '03/12/2021 10:51:22',
                     message: 'Lorem, ipsum dolor sit amet consectetur adipisicing.',
                     status: 'sent'
                 },
                 {
-                    date: '13/09/2021 11:11:10',
+                    date: '03/12/2021 11:11:10',
                     message: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, voluptatibus. Natus praesentium tempore alias aut quod ducimus blanditiis necessitatibus, deleniti explicabo ex laborum!',
                     status: 'sent'
                 },
                 {
-                    date: '13/09/2021 12:20:54',
+                    date: '03/12/2021 12:20:54',
                     message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis assumenda ea tempore accusamus deserunt aliquam fuga sapiente vitae excepturi. Nam officiis laborum adipisci earum blanditiis explicabo?',
                     status: 'received'
                 },
@@ -297,27 +297,27 @@ const app = new Vue({
                 avatar: '_9',
                 visible: true,
                 messages: [{
-                    date: '31/10/2021 10:30:43',
+                    date: '27/11/2021 10:30:43',
                     message: 'Lorem ipsum dolor sit amet.',
                     status: 'sent'
                 },
                 {
-                    date: '31/10/2021 10:43:00',
+                    date: '27/11/2021 10:43:00',
                     message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, hic?',
                     status: 'received'
                 },
                 {
-                    date: '31/10/2021 10:51:22',
+                    date: '31/11/2021 10:51:22',
                     message: 'Lorem, ipsum dolor sit amet consectetur adipisicing.',
                     status: 'sent'
                 },
                 {
-                    date: '31/10/2021 11:11:10',
+                    date: '31/11/2021 11:11:10',
                     message: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, voluptatibus. Natus praesentium tempore alias aut quod ducimus blanditiis necessitatibus, deleniti explicabo ex laborum!',
                     status: 'received'
                 },
                 {
-                    date: '31/10/2021 12:20:54',
+                    date: '31/11/2021 12:20:54',
                     message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis assumenda ea tempore accusamus deserunt aliquam fuga sapiente vitae excepturi. Nam officiis laborum adipisci earum blanditiis explicabo?',
                     status: 'sent'
                 },
@@ -386,8 +386,16 @@ const app = new Vue({
             }
         },
         getDate: function(fullDate) {
-            const date = dayjs(fullDate, "DD/MM/YYYY HH:mm:ss").format("M/D/YYYY");
+            let date = dayjs(fullDate, "DD/MM/YYYY HH:mm:ss").format("M/D/YYYY");
             const time = dayjs(fullDate, "DD/MM/YYYY HH:mm:ss").format("h:mm A");
+            const today = dayjs();
+            if ((today.diff(date, "day") > 1) && (today.diff(date, "day") < 8)) {
+                date = dayjs(fullDate, "DD/MM/YYYY HH:mm:ss").format("dddd");
+            } else if (today.diff(date, "day") == 0) {
+                date = "today";
+            } else if (today.diff(date, "day") == 1) {
+                date = "yesterday";
+            }
             const newDate = [date, time];
             return newDate;
         },

@@ -79,7 +79,8 @@
                             <div class="chat-info-top flex justify-between">
                                 <h4>{{item.name}}</h4>
                                 <div class="last-msg-time">
-                                    <span>{{item.messages[item.msgLength].newDate[0]}}</span>
+                                    <span v-if="item.messages[item.msgLength].newDate[0] != 'today'">{{item.messages[item.msgLength].newDate[0]}}</span>
+                                    <span v-else>{{item.messages[item.msgLength].newDate[1]}}</span>
                                 </div>
                             </div>
                             <div class="chat-info-bottom flex-center-y w-100">
