@@ -303,6 +303,17 @@ svg path:first-child {
     max-height: 100%;
     padding-top: 1.5rem;
 }
+.chat-body .messages .date {
+    background: rgb(29,42,48);
+    border-radius: .5rem;
+    width: max-content;
+    font-size: .8rem;
+    font-weight: 400;
+    position: sticky;
+    position: -webkit-sticky;
+    top: -15px;
+    z-index: 3;
+}
 .chat-body .message-row {
     z-index: 1;
     margin: 0 5rem 1.5rem;

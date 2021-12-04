@@ -149,22 +149,27 @@
                         <div class="chat-background wh-100 absolute"></div>
                         <!-- messages -->
                         <div class="messages w-100 flex-column absolute bottom-0">
-                            <!-- single message -->
-                            <div class="message-row flex relative" v-for="item in contacts[selectedChat].messages" :class="item.status">
-                                <div class="message relative clearfix">
-                                    <span class="msg-text inline-block p-05">{{item.message}}</span>
-                                    <!-- msg info -->
-                                    <div class="inline-block">
-                                        <div class="msg-info absolute bottom-0 right-0 flex">
-                                            <span class="msg-time inline-block">{{item.newDate[1]}}</span>
-                                            <div class="icon read inline-block" v-if="item.status == 'sent'">
-                                                <svg viewBox="0 0 18 18" width="18" height="18" class=""><path d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"></path></svg>
+                            <div class="day-chat" v-for="day in contacts[selectedChat].newDayChat">
+                                <div class="date mx-auto my-1 p-05">
+                                    {{day.date}}
+                                </div>
+                                <!-- single message -->
+                                <div class="message-row flex relative" v-for="item in day.messages" :class="item.status">
+                                    <div class="message relative clearfix">
+                                        <span class="msg-text inline-block p-05">{{item.message}}</span>
+                                        <!-- msg info -->
+                                        <div class="inline-block">
+                                            <div class="msg-info absolute bottom-0 right-0 flex">
+                                                <span class="msg-time inline-block">{{item.newDate[1]}}</span>
+                                                <div class="icon read inline-block" v-if="item.status == 'sent'">
+                                                    <svg viewBox="0 0 18 18" width="18" height="18" class=""><path d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"></path></svg>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="message-tail absolute">
-                                    <svg viewBox="0 0 8 13" width="8" height="13" class=""><path opacity=".13" d="M5.188 1H0v11.193l6.467-8.625C7.526 2.156 6.958 1 5.188 1z"></path><path d="M5.188 0H0v11.193l6.467-8.625C7.526 1.156 6.958 0 5.188 0z"></path></svg>
+                                    <div class="message-tail absolute">
+                                        <svg viewBox="0 0 8 13" width="8" height="13" class=""><path opacity=".13" d="M5.188 1H0v11.193l6.467-8.625C7.526 2.156 6.958 1 5.188 1z"></path><path d="M5.188 0H0v11.193l6.467-8.625C7.526 1.156 6.958 0 5.188 0z"></path></svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -210,3 +215,4 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+<!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ducimus quisquam rerum error id sunt! -->

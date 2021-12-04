@@ -46,7 +46,7 @@ const app = new Vue({
                 }
                 ],
                 msgLength: 0,
-                muted: false
+                muted: true
             },
             {
                 name: 'Samuele',
@@ -72,19 +72,255 @@ const app = new Vue({
                 muted: false
             },
             {
-                name: 'Luisa',
+                name: 'Giuseppe',
                 avatar: '_4',
                 visible: true,
+                messages: [
+                    {
+                        date: '10/01/2021 15:30:55',
+                        message: 'Lo sai che ha aperto una nuova pizzeria?',
+                        status: 'sent'
+                    },
+                    {
+                        date: '10/01/2021 15:50:00',
+                        message: 'Si, ma preferirei andare al cinema',
+                        status: 'received'
+                    },
+                    {
+                        date: '23/09/2021 18:26:34',
+                        message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit iure unde nisi sequi neque autem eligendi id enim doloribus? Voluptatem repudiandae natus iusto, accusamus ab eum esse nisi amet. Illo nesciunt aperiam exercitationem in provident amet, minima dolorum ducimus saepe?',
+                        status: 'sent'
+                    },
+                    {
+                        date: '23/09/2021 18:28:08',
+                        message: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, optio!',
+                        status: 'received'
+                    },
+                    {
+                        date: '23/09/2021 18:30:55',
+                        message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ducimus quisquam rerum error id sunt!',
+                        status: 'sent'
+                    },
+                    {
+                        date: '03/12/2021 10:34:08',
+                        message: 'Ciao!',
+                        status: 'received'
+                    },
+                    {
+                        date: '03/12/2021 10:35:58',
+                        message: 'Ciao!',
+                        status: 'sent'
+                    },
+                    {
+                        date: '03/12/2021 10:36:08',
+                        message: 'Come va?',
+                        status: 'received'
+                    },
+                    {
+                        date: '03/12/2021 11:05:55',
+                        message: 'Molto bene, a te?',
+                        status: 'sent'
+                    },
+                    {
+                        date: '03/12/2021 11:07:00',
+                        message: 'Tutto bene, grazie',
+                        status: 'received'
+                    },
+                    {
+                        date: '04/12/2021 10:26:34',
+                        message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit iure unde nisi sequi neque autem eligendi id enim doloribus? Voluptatem repudiandae natus iusto, accusamus ab eum esse nisi amet. Illo nesciunt aperiam exercitationem in provident amet, minima dolorum ducimus saepe?',
+                        status: 'sent'
+                    },
+                    {
+                        date: '04/12/2021 10:28:08',
+                        message: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, optio!',
+                        status: 'received'
+                    },
+                    {
+                        date: '04/12/2021 10:30:55',
+                        message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ducimus quisquam rerum error id sunt!',
+                        status: 'sent'
+                    },
+                    {
+                        date: '04/12/2021 10:34:08',
+                        message: 'Loremo ipsum',
+                        status: 'received'
+                    },
+                    {
+                        date: '04/12/2021 10:35:58',
+                        message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ducimus quisquam rerum error id sunt!',
+                        status: 'sent'
+                    },
+                    {
+                        date: '04/12/2021 10:36:08',
+                        message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ducimus quisquam rerum error id sunt!',
+                        status: 'received'
+                    },
+                ],
+                msgLength: 0,
+                muted: true
+            },
+            {
+                name: 'Antonio',
+                avatar: '_5',
+                visible: true,
                 messages: [{
-                    date: '10/01/2020 15:30:55',
-                    message: 'Lo sai che ha aperto una nuova pizzeria?',
+                    date: '10/08/2021 14:30:43',
+                    message: 'Ciao Antonio, tutto bene?',
                     status: 'sent'
                 },
                 {
-                    date: '20/11/2021 15:50:00',
-                    message: 'Si, ma preferirei andare al cinema',
+                    date: '10/08/2021 14:33:00',
+                    message: 'Tutto bene, a te?',
                     status: 'received'
-                }
+                },
+                {
+                    date: '10/08/2021 16:15:22',
+                    message: 'Tutto okay, grazie',
+                    status: 'sent'
+                },
+                {
+                    date: '10/08/2021 16:16:10',
+                    message: 'Quando sei libero ci vediamo!',
+                    status: 'sent'
+                },
+                {
+                    date: '10/08/2021 16:20:54',
+                    message: 'Volentieri!',
+                    status: 'received'
+                },
+                ],
+                msgLength: 0,
+                muted: false
+            },
+            {
+                name: 'Laura',
+                avatar: '_6',
+                visible: true,
+                messages: [{
+                    date: '08/11/2021 10:30:43',
+                    message: 'Lorem ipsum dolor sit amet.',
+                    status: 'received'
+                },
+                {
+                    date: '10/11/2021 10:43:00',
+                    message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, hic?',
+                    status: 'sent'
+                },
+                {
+                    date: '10/11/2021 10:51:22',
+                    message: 'Lorem, ipsum dolor sit amet consectetur adipisicing.',
+                    status: 'received'
+                },
+                {
+                    date: '10/11/2021 11:11:10',
+                    message: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, voluptatibus. Natus praesentium tempore alias aut quod ducimus blanditiis necessitatibus, deleniti explicabo ex laborum!',
+                    status: 'sent'
+                },
+                {
+                    date: '10/11/2021 12:20:54',
+                    message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis assumenda ea tempore accusamus deserunt aliquam fuga sapiente vitae excepturi. Nam officiis laborum adipisci earum blanditiis explicabo?',
+                    status: 'received'
+                },
+                ],
+                msgLength: 0,
+                muted: false
+            },
+            {
+                name: 'Francesco',
+                avatar: '_7',
+                visible: true,
+                messages: [{
+                    date: '23/11/2021 10:30:43',
+                    message: 'Lorem ipsum dolor sit amet.',
+                    status: 'sent'
+                },
+                {
+                    date: '23/11/2021 10:43:00',
+                    message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, hic?',
+                    status: 'received'
+                },
+                {
+                    date: '23/11/2021 10:51:22',
+                    message: 'Lorem, ipsum dolor sit amet consectetur adipisicing.',
+                    status: 'sent'
+                },
+                {
+                    date: '23/11/2021 11:11:10',
+                    message: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, voluptatibus. Natus praesentium tempore alias aut quod ducimus blanditiis necessitatibus, deleniti explicabo ex laborum!',
+                    status: 'received'
+                },
+                {
+                    date: '23/11/2021 12:20:54',
+                    message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis assumenda ea tempore accusamus deserunt aliquam fuga sapiente vitae excepturi. Nam officiis laborum adipisci earum blanditiis explicabo?',
+                    status: 'sent'
+                },
+                ],
+                msgLength: 0,
+                muted: false
+            },
+            {
+                name: 'Luca',
+                avatar: '_8',
+                visible: true,
+                messages: [{
+                    date: '13/09/2021 10:30:43',
+                    message: 'Lorem ipsum dolor sit amet.',
+                    status: 'sent'
+                },
+                {
+                    date: '13/09/2021 10:43:00',
+                    message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, hic?',
+                    status: 'received'
+                },
+                {
+                    date: '13/09/2021 10:51:22',
+                    message: 'Lorem, ipsum dolor sit amet consectetur adipisicing.',
+                    status: 'sent'
+                },
+                {
+                    date: '13/09/2021 11:11:10',
+                    message: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, voluptatibus. Natus praesentium tempore alias aut quod ducimus blanditiis necessitatibus, deleniti explicabo ex laborum!',
+                    status: 'sent'
+                },
+                {
+                    date: '13/09/2021 12:20:54',
+                    message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis assumenda ea tempore accusamus deserunt aliquam fuga sapiente vitae excepturi. Nam officiis laborum adipisci earum blanditiis explicabo?',
+                    status: 'received'
+                },
+                ],
+                msgLength: 0,
+                muted: false
+            },
+            {
+                name: 'Sara',
+                avatar: '_9',
+                visible: true,
+                messages: [{
+                    date: '31/10/2021 10:30:43',
+                    message: 'Lorem ipsum dolor sit amet.',
+                    status: 'sent'
+                },
+                {
+                    date: '31/10/2021 10:43:00',
+                    message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, hic?',
+                    status: 'received'
+                },
+                {
+                    date: '31/10/2021 10:51:22',
+                    message: 'Lorem, ipsum dolor sit amet consectetur adipisicing.',
+                    status: 'sent'
+                },
+                {
+                    date: '31/10/2021 11:11:10',
+                    message: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, voluptatibus. Natus praesentium tempore alias aut quod ducimus blanditiis necessitatibus, deleniti explicabo ex laborum!',
+                    status: 'received'
+                },
+                {
+                    date: '31/10/2021 12:20:54',
+                    message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis assumenda ea tempore accusamus deserunt aliquam fuga sapiente vitae excepturi. Nam officiis laborum adipisci earum blanditiis explicabo?',
+                    status: 'sent'
+                },
                 ],
                 msgLength: 0,
                 muted: true
@@ -146,6 +382,7 @@ const app = new Vue({
                 this.lastMsgReorder();
                 this.selectedChat = 0;
                 this.botMsg();
+                this.getDayChat();
             }
         },
         getDate: function(fullDate) {
@@ -166,7 +403,7 @@ const app = new Vue({
                 const h = Math.floor(Math.random() * dayjs().format("H"));
                 const m = Math.floor(Math.random() * 60);
                 const time = dayjs(h + ":" + m, "H:m").format("h:mm A");
-                contact.lastSeen = "last seen at " + time;
+                contact.lastSeen = "last seen today at " + time;
             });
         },
         lastMsgReorder: function() {
@@ -194,6 +431,7 @@ const app = new Vue({
                 ref.getMsgLength();
                 ref.lastMsgReorder();
                 ref.contacts[thisChat].lastSeen = "Online";
+                ref.getDayChat();
                 function randomAnswer() {
                     const answers = ["Okay", "A presto!", "Ciao", "Tutto bene", "No", "Sì"];
                     const choose = Math.floor(Math.random() * answers.length);
@@ -202,8 +440,35 @@ const app = new Vue({
             },3000);
             setTimeout(function(){
                 const time = dayjs().format("h:mm A");
-                ref.contacts[thisChat].lastSeen = "last seen at " + time;
+                ref.contacts[thisChat].lastSeen = "last seen today at " + time;
             }, 4000);
+        },
+        getDayChat: function() {
+            this.contacts.forEach(contact => {
+                const datesArray = [];
+                contact.messages.forEach(message => {
+                    if (!(datesArray.includes(message.newDate[0]))) {
+                        datesArray.push(message.newDate[0]);
+                    }
+                });
+                contact.datesArray = datesArray;
+                contact.newDayChat = [];
+                contact.datesArray.forEach(data => {
+                    const dayChat = [];
+                    contact.messages.forEach(message => {
+                        if (message.newDate[0] == data) {
+                            dayChat.push(message);
+                        }
+                    });
+                    contact.newDayChat.push({
+                        date: data,
+                        messages: dayChat}
+                        );
+                    // console.log(newDayChat);
+                });
+                // console.log(contact.datesArray);
+            });
+            console.log(this.contacts);
         },
     },
     created() {
@@ -211,5 +476,6 @@ const app = new Vue({
         this.changeDates();
         this.lastMsgReorder();
         this.addLastSeen();
+        this.getDayChat();
     }
 });
