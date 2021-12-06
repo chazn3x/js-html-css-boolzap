@@ -52,14 +52,14 @@
                 <div class="search-bar w-100 flex-center px-1">
                     <div class="search-area flex-center-y w-100">
                         <!-- icons -->
-                        <div class="icon search-icon ms-1" v-if="searching == false">
+                        <div class="icon search-icon ms-1" v-if="searching == false" @click="focusSearch()">
                             <svg viewBox="0 0 24 24" width="24" height="24" class=""><path d="M15.009 13.805h-.636l-.22-.219a5.184 5.184 0 0 0 1.256-3.386 5.207 5.207 0 1 0-5.207 5.208 5.183 5.183 0 0 0 3.385-1.255l.221.22v.635l4.004 3.999 1.194-1.195-3.997-4.007zm-4.808 0a3.605 3.605 0 1 1 0-7.21 3.605 3.605 0 0 1 0 7.21z"></path></svg>
                         </div>
-                        <div class="icon back-icon ms-1" v-else @click="searchInput = ''">
+                        <div class="icon back-icon ms-1" v-else @click="searchInput = '', getSearchedContacts()">
                             <i class="fas fa-arrow-left"></i>
                         </div>
                         <!-- input -->
-                        <input class="w-100 me-3 h-70" type="text" autocomplete="false" spellcheck="false" placeholder="Search or start new chat" v-model="searchInput" @keyup="getSearchedContacts()">
+                        <input id="search-input" class="w-100 me-3 h-70" type="text" autocomplete="false" spellcheck="false" placeholder="Search or start new chat" v-model="searchInput" @keyup="getSearchedContacts()">
                     </div>
                 </div>
                 <!-- no results in search -->
@@ -92,8 +92,15 @@
                                     <div class="mute-icon absolute" v-if="item.muted">
                                         <svg viewBox="0 0 16 18" width="16" height="18" class=""><path d="M11.52 9.206c0-1.4-.778-2.567-1.944-3.111v1.711L11.52 9.75v-.544zm1.945 0c0 .7-.156 1.4-.389 2.022l1.167 1.167c.544-.933.778-2.1.778-3.267 0-3.344-2.333-6.144-5.444-6.844v1.633c2.255.778 3.888 2.8 3.888 5.289zm-11.433-7L1.02 3.217l3.656 3.656H1.02v4.667h3.111l3.889 3.889v-5.211l3.344 3.344c-.544.389-1.089.7-1.789.933v1.633a6.64 6.64 0 0 0 2.878-1.4l1.556 1.556 1.011-1.011-7-7-5.988-6.067zm5.988.778L6.387 4.617 8.02 6.25V2.984z"></path></svg>
                                     </div>
-                                    <div class="menu-icon absolute" @click="item.muted = !item.muted">
-                                        <i class="fas fa-chevron-down"></i>
+                                    <div class="menu-icon absolute" @click.stop="item.menu = !item.menu">
+                                        <div class="icon">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                        <div class="menu py-05 absolute right-0 top-100" v-if="item.menu">
+                                            <span class="py-05 px-1 block" @click="deleteChat(i)">Delete chat</span>
+                                            <span class="py-05 px-1 block" @click="item.muted = !item.muted" v-if="!item.muted">Mute notifications</span>
+                                            <span class="py-05 px-1 block" @click="item.muted = !item.muted" v-else>Unmute notifications</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

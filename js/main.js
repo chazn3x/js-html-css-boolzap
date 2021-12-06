@@ -26,7 +26,8 @@ const app = new Vue({
                 }
                 ],
                 msgLength: 0,
-                muted: false
+                muted: false,
+                menu: false,
             },
             {
                 name: 'Fabio',
@@ -52,7 +53,8 @@ const app = new Vue({
                 }
                 ],
                 msgLength: 0,
-                muted: true
+                muted: true,
+                menu: false,
             },
             {
                 name: 'Samuele',
@@ -78,7 +80,8 @@ const app = new Vue({
                 }
                 ],
                 msgLength: 0,
-                muted: false
+                muted: false,
+                menu: false,
             },
             {
                 name: 'Giuseppe',
@@ -183,7 +186,8 @@ const app = new Vue({
                     },
                 ],
                 msgLength: 0,
-                muted: false
+                muted: false,
+                menu: false,
             },
             {
                 name: 'Antonio',
@@ -221,7 +225,8 @@ const app = new Vue({
                 },
                 ],
                 msgLength: 0,
-                muted: false
+                muted: false,
+                menu: false,
             },
             {
                 name: 'Laura',
@@ -259,7 +264,8 @@ const app = new Vue({
                 },
                 ],
                 msgLength: 0,
-                muted: false
+                muted: false,
+                menu: false,
             },
             {
                 name: 'Francesco',
@@ -297,7 +303,8 @@ const app = new Vue({
                 },
                 ],
                 msgLength: 0,
-                muted: true
+                muted: true,
+                menu: false,
             },
             {
                 name: 'Luca',
@@ -335,7 +342,8 @@ const app = new Vue({
                 },
                 ],
                 msgLength: 0,
-                muted: false
+                muted: false,
+                menu: false,
             },
             {
                 name: 'Sara',
@@ -373,7 +381,8 @@ const app = new Vue({
                 },
                 ],
                 msgLength: 0,
-                muted: true
+                muted: true,
+                menu: false,
             },
         ],
         viewChat: false,
@@ -402,6 +411,9 @@ const app = new Vue({
         openChat: function(i) {
             this.viewChat = true;
             this.selectedChat = i;
+            setTimeout(function() {
+                document.getElementById("message-input").focus();
+            }, 10);
         },
         getSearchedContacts: function() {
             this.contacts.forEach(contact => {
@@ -443,13 +455,14 @@ const app = new Vue({
                 this.selectedChat = 0;
                 this.botMsg();
                 this.getDayChat();
+                this.getNewMsgLength();
             }
         },
         getDate: function(fullDate) {
             let date = dayjs(fullDate, "DD/MM/YYYY HH:mm:ss").format("M/D/YYYY");
             const time = dayjs(fullDate, "DD/MM/YYYY HH:mm:ss").format("h:mm A");
             const today = dayjs();
-            if ((today.diff(date, "day") > 1) && (today.diff(date, "day") < 8)) {
+            if ((today.diff(date, "day") > 1) && (today.diff(date, "day") < 7)) {
                 date = dayjs(fullDate, "DD/MM/YYYY HH:mm:ss").format("dddd");
             } else if (today.diff(date, "day") == 0) {
                 date = "today";
@@ -501,6 +514,7 @@ const app = new Vue({
                 ref.lastMsgReorder();
                 ref.contacts[thisChat].lastSeen = "Online";
                 ref.getDayChat();
+                ref.getNewMsgLength();
                 function randomAnswer() {
                     const answers = ["Okay", "A presto!", "Ciao", "Tutto bene", "No", "Sì"];
                     const choose = Math.floor(Math.random() * answers.length);
@@ -533,11 +547,8 @@ const app = new Vue({
                         date: data,
                         messages: dayChat}
                         );
-                    // console.log(newDayChat);
                 });
-                // console.log(contact.datesArray);
             });
-            console.log(this.contacts);
         },
         showMenu: function(message) {
             message.menu = !message.menu;
@@ -551,11 +562,15 @@ const app = new Vue({
             }
         },
         deleteMsg: function(i, j) {
-            // this.contacts[this.selectedChat].newDayChat[i].messages.splice(j, 1);
-            // this.getNewMsgLength();
             this.contacts[this.selectedChat].newDayChat[i].messages[j].message = "This message was deleted";
             this.contacts[this.selectedChat].newDayChat[i].messages[j].deleted = true;
-        }
+        },
+        deleteChat: function(i) {
+            this.contacts.splice(i, 1);
+        },
+        focusSearch: function() {
+            document.getElementById("search-input").focus();
+        },
     },
     created() {
         this.getMsgLength();

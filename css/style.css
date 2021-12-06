@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 *:not(input) {
     user-select: none;
     -webkit-user-select: none;
 }
 * {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 ::-webkit-scrollbar {
     width: 6px;
@@ -167,6 +167,7 @@ svg path:first-child {
 .chat-list {
     flex: 1;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 .chat-preview {
     height: 70px;
@@ -219,12 +220,30 @@ svg path:first-child {
 .chat-info .icons {
     width: 50px;
     height: 20px;
-    overflow: hidden;
 }
 .chat-info .menu-icon {
     color: rgb(130, 134, 137);
     right: -25px;
     transition: right .1s;
+}
+.chat-info .menu-icon i {
+    opacity: 0;
+}
+.chat-info .menu {
+    z-index: 1000;
+    text-align: left;
+    width: max-content;
+    background: rgb(42,47,50);
+    border-radius: 4px;
+    cursor: default;
+    color: rgba(255,255,255,.8);
+    box-shadow: 0 0 .5rem rgba(0,0,0,0.4);
+}
+.chat-info .menu span {
+    cursor: pointer;
+}
+.chat-info .menu span:hover {
+    background: rgb(32,39,43);
 }
 .chat-info .mute-icon {
     right: 0;
@@ -232,6 +251,9 @@ svg path:first-child {
 }
 .chat-preview:hover .menu-icon {
     right: 0px;
+}
+.chat-preview:hover .menu-icon i {
+    opacity: 1;
 }
 .chat-preview:hover .mute-icon {
     right: 20px;
@@ -434,6 +456,8 @@ svg path:first-child {
     border-radius: 4px;
     cursor: default;
     z-index: 100;
+    color: rgba(255,255,255,.8);
+    box-shadow: 0 0 .5rem rgba(0,0,0,0.4);
 }
 .chat-body .message-row.sent .menu {
     right: .5rem;
