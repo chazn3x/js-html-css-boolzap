@@ -449,11 +449,12 @@ const app = new Vue({
             }
             if (this.messageInput != "") {
                 this.contacts[this.selectedChat].messages.push(newMessage);
+                const inputForBot = this.messageInput;
                 this.messageInput = "";
                 this.getMsgLength();
                 this.lastMsgReorder();
                 this.selectedChat = 0;
-                this.botMsg();
+                this.botMsg(inputForBot);
                 this.getDayChat();
                 this.getNewMsgLength();
             }
@@ -495,7 +496,8 @@ const app = new Vue({
             }
             this.contacts.sort(reorder);
         },
-        botMsg: function() {
+        botMsg: function(msg) {
+            const msgInput = msg.toLowerCase();
             const ref = this;
             const thisChat = ref.selectedChat;
             this.contacts[this.selectedChat].lastSeen = "typing...";
@@ -504,7 +506,7 @@ const app = new Vue({
                 const newMessage = 
                 {
                     date: fullDate,
-                    message: randomAnswer(),
+                    message: iaAnswer(),
                     status: 'received',
                     newDate: ref.getDate(fullDate),
                     menu: false,
@@ -515,11 +517,69 @@ const app = new Vue({
                 ref.contacts[thisChat].lastSeen = "Online";
                 ref.getDayChat();
                 ref.getNewMsgLength();
-                function randomAnswer() {
-                    const answers = ["Okay", "A presto!", "Ciao", "Tutto bene", "No", "Sì"];
-                    const choose = Math.floor(Math.random() * answers.length);
-                    return answers[choose];
-                };
+                // function randomAnswer() {
+                //     const answers = ["Okay", "A presto!", "Ciao", "Tutto bene", "No", "Sì"];
+                //     const choose = Math.floor(Math.random() * answers.length);
+                //     return answers[choose];
+                // };
+                function iaAnswer() {
+                    let botOutput, choose;
+                    let answers = [];
+                    let emoji = [":)", ":D", "(:"];
+                    switch(msgInput) {
+                        case "ciao": case "salve": case "buona sera": case "buonasera": case "buongiorno": case "ehi": case `ciao ${ref.contacts[thisChat].name.toLowerCase()}`: case `buona sera ${ref.contacts[thisChat].name.toLowerCase()}`: case `buongiorno ${ref.contacts[thisChat].name.toLowerCase()}`: case `ehi ${ref.contacts[thisChat].name.toLowerCase()}`: case `buonasera ${ref.contacts[thisChat].name.toLowerCase()}`:
+                            answers = ["Ciao", "Ciao!", "Ehi", "Ehi!", "Ehilà", "Ehilà!", timeAnswer()];
+                            choose = randomChoose(answers);
+                            botOutput = answers[choose] + " " + randomEmoji();
+                            break;
+                        case "come stai?": case "come stai": case "come va?": case "come va": case "tutto bene?": case "come te la passi?": case "come te la passi": case "come vanno le cose?": case "come vanno le cose":
+                            answers = ["Tutto bene, tu?", "Tutto bene, grazie", "Tutto apposto, tu?", "Tutto apposto, grazie", "Tutto bene", "Tutto apposto", "Molto bene, grazie", "Molto bene, tu?", "Molto bene"];
+                            choose = randomChoose(answers);
+                            botOutput = answers[choose];
+                            break;
+                        case "va bene": case "ok": case "okay": case "bene": case "d'accordo": case "si": case "sì":
+                            answers = ["Perfetto!", "Perfetto", "Okay", "Bene", "Ok", "Ottimo", "Fantastico", "Ottimo!", "Fantastico!"];
+                            choose = randomChoose(answers);
+                            botOutput = answers[choose];
+                            break;
+                        case "tutto bene, grazie": case "tutto bene": case "bene, grazie": case "molto bene": case "tutto apposto": case "tutto apposto, grazie":
+                            answers = ["Perfetto!", "Perfetto", "Okay", "Bene", "Ok", "Ottimo", "Fantastico", "Ottimo!", "Fantastico!"];
+                            choose = randomChoose(answers);
+                            botOutput = answers[choose] + " " + randomEmoji();
+                            break;
+                        case "usciamo?": case "usciamo": case "andiamo al cinema?": case "andiamo al cinema": case "andiamo in pizzeria?": case "andiamo in pizzeria": case "vuoi fare qualcosa?": case "facciamo qualcosa?": case "andiamo da qualche parte?": case "facciamo qualcosa": case "vuoi uscire?": case "vuoi uscire":
+                            answers = ["Sì, ci sono!", "Non posso, ho già un impegno", "Facciamo un'altra volta", "Va bene", "Ok", "Okay", "Volentieri", "Sono impegnato", "Ho da fare"];
+                            choose = randomChoose(answers);
+                            botOutput = answers[choose];
+                            break;
+                        case "lol":
+                            answers = ["Lol", "Yolo", "Trololol", "Lmao"];
+                            choose = randomChoose(answers);
+                            botOutput = answers[choose];
+                            break;
+                        default:
+                            answers = ["Lol", "Scusa ma devo andare!", "Ora non posso parlare, ci sentiamo più tardi", "Ora non posso parlare", "Sono al telefono, ci sentiamo dopo"];
+                            choose = randomChoose(answers);
+                            botOutput = answers[choose];
+                    }
+                    return botOutput;
+                    function timeAnswer() {
+                        const time = dayjs().format("H");
+                        if (time < 13) {
+                            return "Buongiorno"
+                        } else return "Buonasera"
+                    }
+                    function randomEmoji() {
+                        const bool = Math.floor(Math.random() * 1);
+                        if (bool == 0) {
+                            choose = randomChoose(emoji);
+                            return emoji[choose];
+                        } else return "";
+                    }
+                    function randomChoose(array) {
+                        return Math.floor(Math.random() * array.length);
+                    }
+                }
             },3000);
             setTimeout(function(){
                 const time = dayjs().format("h:mm A");

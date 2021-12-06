@@ -203,6 +203,13 @@ svg path:first-child {
     text-overflow: ellipsis;
     flex: 1;
 }
+.chat-preview .chat-info .chat-info-bottom h5 svg {
+    margin-bottom: -.4rem;
+    width: 1.2rem;
+}
+.chat-preview .chat-info .chat-info-bottom h5 svg path {
+    fill: rgba(255,255,255,.5);
+}
 .chat-preview:hover .chat-info .chat-info-bottom h5 {
     min-width: 70%;
 }
@@ -368,6 +375,7 @@ svg path:first-child {
 }
 .chat-body .message .msg-text svg {
     margin-bottom: -.4rem;
+    width: 1.2rem;
 }
 .chat-body .message .msg-text svg path {
     fill: rgba(255,255,255,.5);
@@ -409,14 +417,14 @@ svg path:first-child {
     background: rgb(17,97,98);
 }
 .chat-body .message-row.sent .message-tail {
-    top: -3px;
+    top: -2px;
     right: -7px;
 }
 .chat-body .message-row.sent .message-tail svg path {
     fill: rgb(17,97,98);
 }
 .chat-body .message-row.received .message-tail {
-    top: -3px;
+    top: -2px;
     left: -7px;
     transform: rotateX(180deg) rotateZ(180deg);
     -webkit-transform: rotateX(180deg) rotateZ(180deg);
