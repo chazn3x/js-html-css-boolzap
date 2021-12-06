@@ -330,7 +330,6 @@ svg path:first-child {
     text-transform: uppercase;
 }
 .chat-body .message-row {
-    z-index: 1;
     margin: 0 5rem 1.5rem;
 }
 .chat-body .message {
@@ -344,6 +343,17 @@ svg path:first-child {
     font-weight: 400;
     font-size: .9rem;
     color: rgba(255,255,255,.8);
+}
+.chat-body .message .msg-text svg {
+    margin-bottom: -.4rem;
+}
+.chat-body .message .msg-text svg path {
+    fill: rgba(255,255,255,.5);
+}
+.chat-body .message .msg-text.deleted,
+.chat-info-bottom h5.deleted {
+    color: rgba(255,255,255,.5);
+    font-style: italic;
 }
 .chat-body .message>div {
     float: right;
@@ -392,12 +402,68 @@ svg path:first-child {
 .chat-body .message-row.received .message-tail svg path {
     fill: rgb(38,45,48);
 }
+.chat-body .message-row .menu-icon .icon {
+    overflow: hidden;
+}
+.chat-body .message-row .menu-icon {
+    top: 0;
+    right: 0;
+    max-width: max-content;
+    padding: .5rem .5rem;
+    color: rgba(255,255,255,.6);
+    cursor: pointer;
+    min-height: 2rem;
+    min-width: 2.5rem;
+    text-align: end;
+    z-index: 6;
+    border-radius: 0 0 .5rem 0;
+}
+.chat-body .message-row .menu-icon i {
+    transform: translateX(50px);
+    -webkit-transform: translateX(50px);
+    transition: transform .1s;
+    opacity: 0;
+}
+.chat-body .message-row .message:hover .menu-icon i {
+    opacity: 1;
+}
+.chat-body .message-row .menu {
+    background: rgb(42,47,50);
+    text-align: center;
+    width: max-content;
+    border-radius: 4px;
+    cursor: default;
+    z-index: 100;
+}
+.chat-body .message-row.sent .menu {
+    right: .5rem;
+}
+.chat-body .message-row.received .menu {
+    left: 1rem;
+}
+.chat-body .message-row .menu span {
+    cursor: pointer;
+}
+.chat-body .message-row .menu span:hover {
+    background: rgb(32,39,43);
+}
+.chat-body .message-row .message:hover .menu-icon i {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+}
+.chat-body .message-row.sent .message:hover .menu-icon {
+    background: linear-gradient(207deg, rgba(17,97,98,1) 60%, rgba(17,97,98,0) 100%);
+}
 .chat-body .message-row.received {
     justify-content: flex-start;
 }
 .chat-body .message-row.received .message {
     border-radius: 0 .5rem .5rem .5rem;
     background: rgb(38,45,48);
+}
+.chat-body .message-row.received .message:hover .menu-icon {
+    background: linear-gradient(207deg, rgba(38,45,48,1) 60%, rgba(38,45,48,0) 100%);
+    border-radius: 0 .5rem .5rem 0;
 }
 /* chat input */
 .chat-footer {

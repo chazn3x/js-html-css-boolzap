@@ -79,15 +79,15 @@
                             <div class="chat-info-top flex justify-between">
                                 <h4>{{item.name}}</h4>
                                 <div class="last-msg-time">
-                                    <span v-if="item.messages[item.msgLength].newDate[0] != 'today'">{{item.messages[item.msgLength].newDate[0]}}</span>
-                                    <span v-else>{{item.messages[item.msgLength].newDate[1]}}</span>
+                                    <span v-if="item.newDayChat[item.lastDay].messages[item.newDayChat[item.lastDay].lastMsg].newDate[0] != 'today'">{{item.newDayChat[item.lastDay].messages[item.newDayChat[item.lastDay].lastMsg].newDate[0]}}</span>
+                                    <span v-else>{{item.newDayChat[item.lastDay].messages[item.newDayChat[item.lastDay].lastMsg].newDate[1]}}</span>
                                 </div>
                             </div>
                             <div class="chat-info-bottom flex-center-y w-100">
-                                <div class="icon read" v-if="item.messages[item.msgLength].status == 'sent'">
+                                <div class="icon read" v-if="item.newDayChat[item.lastDay].messages[item.newDayChat[item.lastDay].lastMsg].status == 'sent'">
                                     <svg viewBox="0 0 18 18" width="18" height="18" class=""><path d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"></path></svg>
                                 </div>
-                                <h5>{{item.messages[item.msgLength].message}}</h5>
+                                <h5 :class="{'deleted' : item.newDayChat[item.lastDay].messages[item.newDayChat[item.lastDay].lastMsg].deleted}">{{item.newDayChat[item.lastDay].messages[item.newDayChat[item.lastDay].lastMsg].message}}</h5>
                                 <div class="icons relative right">
                                     <div class="mute-icon absolute" v-if="item.muted">
                                         <svg viewBox="0 0 16 18" width="16" height="18" class=""><path d="M11.52 9.206c0-1.4-.778-2.567-1.944-3.111v1.711L11.52 9.75v-.544zm1.945 0c0 .7-.156 1.4-.389 2.022l1.167 1.167c.544-.933.778-2.1.778-3.267 0-3.344-2.333-6.144-5.444-6.844v1.633c2.255.778 3.888 2.8 3.888 5.289zm-11.433-7L1.02 3.217l3.656 3.656H1.02v4.667h3.111l3.889 3.889v-5.211l3.344 3.344c-.544.389-1.089.7-1.789.933v1.633a6.64 6.64 0 0 0 2.878-1.4l1.556 1.556 1.011-1.011-7-7-5.988-6.067zm5.988.778L6.387 4.617 8.02 6.25V2.984z"></path></svg>
@@ -150,14 +150,17 @@
                         <div class="chat-background wh-100 absolute"></div>
                         <!-- messages -->
                         <div class="messages w-100 flex-column absolute bottom-0">
-                            <div class="day-chat" v-for="day in contacts[selectedChat].newDayChat">
-                                <div class="date mx-auto my-1 p-05">
+                            <div class="day-chat" v-for="(day, i) in contacts[selectedChat].newDayChat">
+                                <div class="date mx-auto my-1 p-05" v-if="day.messages.length != 0">
                                     {{day.date}}
                                 </div>
                                 <!-- single message -->
-                                <div class="message-row flex relative" v-for="item in day.messages" :class="item.status">
+                                <div class="message-row flex relative" v-for="(item, j) in day.messages" :class="item.status" @click="closeMenu(item)">
                                     <div class="message relative clearfix">
-                                        <span class="msg-text inline-block p-05">{{item.message}}</span>
+                                        <span class="msg-text inline-block p-05" :class="{'deleted' : item.deleted}">
+                                            <svg v-if="item.deleted" width="24" height="24" viewBox="0 0 24 24" fill="none" class=""><path fill-rule="evenodd" clip-rule="evenodd" d="M7.759 6.43a7 7 0 0 1 9.81 9.81l-9.81-9.81zM6.357 7.858a7 7 0 0 0 9.786 9.786L6.357 7.857zM12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z" fill="currentColor"></path></svg>
+                                            {{item.message}}
+                                        </span>
                                         <!-- msg info -->
                                         <div class="inline-block">
                                             <div class="msg-info absolute bottom-0 right-0 flex">
@@ -165,6 +168,15 @@
                                                 <div class="icon read inline-block" v-if="item.status == 'sent'">
                                                     <svg viewBox="0 0 18 18" width="18" height="18" class=""><path d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"></path></svg>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <!-- menu -->
+                                        <div class="menu-icon absolute" @click="showMenu(item)">
+                                            <div class="icon">
+                                                <i class="fas fa-chevron-down"></i>
+                                            </div>
+                                            <div class="menu py-05 absolute top-90" v-if="item.menu">
+                                                <span class="py-05 px-1 block" @click="deleteMsg(i, j)">Delete message</span>
                                             </div>
                                         </div>
                                     </div>
