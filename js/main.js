@@ -414,6 +414,7 @@ const app = new Vue({
             setTimeout(function() {
                 document.getElementById("message-input").focus();
             }, 10);
+            this.scrollLastMsg();
         },
         getSearchedContacts: function() {
             this.contacts.forEach(contact => {
@@ -457,6 +458,7 @@ const app = new Vue({
                 this.botMsg(inputForBot);
                 this.getDayChat();
                 this.getNewMsgLength();
+                this.scrollLastMsg();
             }
         },
         getDate: function(fullDate) {
@@ -517,6 +519,7 @@ const app = new Vue({
                 ref.contacts[thisChat].lastSeen = "Online";
                 ref.getDayChat();
                 ref.getNewMsgLength();
+                ref.scrollLastMsg();
                 // function randomAnswer() {
                 //     const answers = ["Okay", "A presto!", "Ciao", "Tutto bene", "No", "Sì"];
                 //     const choose = Math.floor(Math.random() * answers.length);
@@ -630,6 +633,13 @@ const app = new Vue({
         },
         focusSearch: function() {
             document.getElementById("search-input").focus();
+        },
+        scrollLastMsg: function() {
+            setTimeout(function() {
+                const lastMsg = document.getElementsByClassName("message-row");
+                const index = lastMsg.length - 1;
+                lastMsg[index].scrollIntoView({block: "start"});
+            }, 10);
         },
     },
     created() {
