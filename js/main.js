@@ -168,7 +168,7 @@ const app = new Vue({
                     },
                     {
                         date: '04/12/2021 10:34:08',
-                        message: 'Loremo ipsum',
+                        message: 'Lorem ipsum',
                         status: 'received',
                         menu: false,
                     },
@@ -420,11 +420,12 @@ const app = new Vue({
             this.contacts.forEach(contact => {
                 const name = contact.name.toLowerCase();
                 const search = this.searchInput.toLowerCase();
-                if (name.includes(search)) {
-                    contact.visible = true;
-                } else {
-                    contact.visible = false;
-                }
+                // if (name.includes(search)) {
+                //     contact.visible = true;
+                // } else {
+                //     contact.visible = false;
+                // }
+                contact.visible = name.includes(search);
             });
             const array = this.contacts.filter(contact => {
                 if (contact.visible == false) {
